@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('verified_by', 8);
             $table->foreign('verified_by')->references('id')->on('admins')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }

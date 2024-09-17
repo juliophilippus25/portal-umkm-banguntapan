@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('business', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->string('id', 8);
             $table->string('user_id', 8);
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('no_pirt');
             $table->string('address');
             $table->string('net_worth');
+            $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('umkms');
+        Schema::dropIfExists('businesses');
     }
 };
