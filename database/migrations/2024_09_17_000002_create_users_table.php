@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('nik')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('business_id', 8);
-            $table->foreign('business_id')->references('id')->on('business')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('verified_by', 8);
             $table->foreign('verified_by')->references('id')->on('admins')->cascadeOnUpdate()->cascadeOnDelete();
