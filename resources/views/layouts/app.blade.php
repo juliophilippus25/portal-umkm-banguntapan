@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="NiceAdmin/assets/img/favicon.png" rel="icon">
-    <link href="NiceAdmin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="{{ asset('NiceAdmin/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('NiceAdmin/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -20,16 +20,16 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="NiceAdmin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="NiceAdmin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="NiceAdmin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="NiceAdmin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="NiceAdmin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="NiceAdmin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="{{ asset('NiceAdmin/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('NiceAdmin/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('NiceAdmin/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('NiceAdmin/assets/vendor/quill/quill.snow.css') }}" rel="stylesheet">
+    <link href="{{ asset('NiceAdmin/assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
+    <link href="{{ asset('NiceAdmin/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ asset('NiceAdmin/assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="NiceAdmin/assets/css/style.css" rel="stylesheet">
+    <link href="{{ asset('NiceAdmin/assets/css/style.css') }}" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: NiceAdmin
@@ -42,35 +42,30 @@
 
 <body>
 
-    @section('header')
-        @include('layouts.header')
-    @show
+    @include('layouts.header')
 
-    @section('sidebar')
-        @include('layouts.sidebar')
-    @show
+    @include('layouts.sidebar', ['admin' => $admin])
 
     @yield('main')
 
-    @section('footer')
-        @include('layouts.footer')
-    @show
+    @include('layouts.footer')
+
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="NiceAdmin/assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="NiceAdmin/assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="NiceAdmin/assets/vendor/echarts/echarts.min.js"></script>
-    <script src="NiceAdmin/assets/vendor/quill/quill.js"></script>
-    <script src="NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="NiceAdmin/assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="NiceAdmin/assets/vendor/php-email-form/validate.js"></script>
+    <script src="{{ asset('NiceAdmin/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('NiceAdmin/assets/vendor/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('NiceAdmin/assets/vendor/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('NiceAdmin/assets/vendor/quill/quill.js') }}"></script>
+    <script src="{{ asset('NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('NiceAdmin/assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('NiceAdmin/assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="NiceAdmin/assets/js/main.js"></script>
+    <script src="{{ asset('NiceAdmin/assets/js/main.js') }}"></script>
 
 </body>
 
