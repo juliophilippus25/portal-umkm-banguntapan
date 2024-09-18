@@ -17,3 +17,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('admin.logout');
     Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 });
+
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [App\Http\Controllers\User\Auth\RegisterController::class, 'showRegisterForm'])->name('user.showRegister');
+    Route::post('/register/post', [App\Http\Controllers\User\Auth\RegisterController::class, 'register'])->name('user.register');
+});

@@ -9,15 +9,22 @@ class Business extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     protected $fillable = [
+        'id',
+        'user_id',
         'business_name',
         'business_description',
         'business_type_id',
         'sub_district_id',
-        'phone',
+        'business_phone',
         'website',
         'no_pirt',
         'address',
+        'zip_code',
         'avatar',
     ];
 
