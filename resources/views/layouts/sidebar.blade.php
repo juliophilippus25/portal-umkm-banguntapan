@@ -26,6 +26,13 @@
                     <span>Categories</span>
                 </a>
             </li><!-- End Categories Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.html">
+                    <i class="bi bi-building"></i>
+                    <span>Kelurahan</span>
+                </a>
+            </li><!-- End Categories Nav -->
         @endauth
 
     </ul>
