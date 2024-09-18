@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('website');
             $table->string('no_pirt');
             $table->string('address');
-            $table->string('net_worth');
+            // $table->string('net_worth');
             $table->string('avatar')->nullable();
             $table->timestamps();
         });
