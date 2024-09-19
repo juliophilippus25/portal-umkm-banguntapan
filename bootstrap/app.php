@@ -22,6 +22,11 @@ return Application::configure(basePath: dirname(__DIR__))
                 return route('admin.dashboard');
             }
         });
+        $middleware->redirectUsersTo(function(Request $request){
+            if($request->is('user/*')){
+                return route('user.dashboard');
+            }
+        });
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
