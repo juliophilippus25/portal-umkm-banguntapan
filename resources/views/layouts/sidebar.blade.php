@@ -12,7 +12,7 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.html">
+                <a class="nav-link collapsed" href="{{ route('admin.users') }}">
                     <i class="bi bi-people"></i>
                     <span>Users</span>
                 </a>

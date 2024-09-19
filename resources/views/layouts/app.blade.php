@@ -44,7 +44,7 @@
 
     @include('layouts.header')
 
-    @include('layouts.sidebar', ['admin' => $admin])
+    @include('layouts.sidebar')
 
     @yield('main')
 
