@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
     public function index(){
-        return view('user.dashboard');
+        $userId = auth('user')->user()->id;
+        return view('user.dashboard', compact('userId'));
     }
 }

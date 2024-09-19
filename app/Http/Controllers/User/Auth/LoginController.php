@@ -16,17 +16,17 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard()->attempt($credentials)) {
+        if (Auth::guard('user')->attempt($credentials)) {
             toast('Anda berhasil masuk ke sistem.','success')->hideCloseButton()->autoClose(3000);
             return redirect()->intended(route('user.dashboard'));
         }
 
-        return redirect('/login')->with('error', 'Invalid credentials');
+        return redirect('/user/login')->with('error', 'Invalid credentials');
     }
 
     public function logout()
     {
         Auth::guard()->logout();
-        return redirect('/');
+        return redirect('/user/login');
     }
 }

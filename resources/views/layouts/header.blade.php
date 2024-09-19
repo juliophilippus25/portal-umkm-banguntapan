@@ -40,15 +40,23 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center"href="{{ route('admin.logout') }}"
-                            onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">
-                            <i class="bi bi-box-arrow-right"></i>
-                            <span>Sign Out</span>
-                        </a>
-                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+                        @auth('admin')
+                            @php $logoutRoute = route('admin.logout'); @endphp
+                            @elseauth('user')
+                            @php $logoutRoute = route('user.logout'); @endphp
+                        @endauth
+
+                        @if (isset($logoutRoute))
+                            <a class="dropdown-item d-flex align-items-center" href="{{ $logoutRoute }}"
+                                onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                            <form id="logout-form" action="{{ $logoutRoute }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        @endif
                     </li>
 
                 </ul><!-- End Profile Dropdown Items -->

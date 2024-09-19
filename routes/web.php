@@ -20,14 +20,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/verify/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'verify'])->name('admin.userVerify');
 });
 
-Route::middleware('guest')->group(function () {
+Route::middleware('guest:user')->group(function () {
     Route::get('/user/register', [App\Http\Controllers\User\Auth\RegisterController::class, 'showRegisterForm'])->name('user.showRegister');
     Route::post('/user/register/post', [App\Http\Controllers\User\Auth\RegisterController::class, 'register'])->name('user.register');
     Route::get('/user/login', [App\Http\Controllers\User\Auth\LoginController::class, 'showLoginForm'])->name('user.showLogin');
     Route::post('/user/login/post', [App\Http\Controllers\User\Auth\LoginController::class, 'login'])->name('user.login');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:user')->group(function () {
     Route::post('/user/logout', [App\Http\Controllers\User\Auth\LoginController::class, 'logout'])->name('user.logout');
     Route::get('/user/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('user.dashboard');
 });
