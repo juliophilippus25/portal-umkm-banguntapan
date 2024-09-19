@@ -45,6 +45,7 @@ class RegisterController extends Controller
             'zip_code' => $request->zip_code,
         ]);
 
+        toast('Berhasil mendaftar!.','success')->hideCloseButton()->autoClose(3000);
         return redirect('/register');
     }
 

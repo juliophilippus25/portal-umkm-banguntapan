@@ -17,7 +17,8 @@ class LoginController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->intended('admin/dashboard');
+            toast('Anda berhasil masuk ke sistem.','success')->hideCloseButton()->autoClose(3000);
+            return redirect()->intended(route('admin.dashboard'));
         }
 
         return redirect('/admin/login')->with('error', 'Invalid credentials');

@@ -178,6 +178,10 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
+    {{-- SweetAlert2 --}}
+    @include('sweetalert::alert')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Vendor JS Files -->
     <script src="{{ asset('NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
