@@ -28,7 +28,12 @@ class UserController extends Controller
         if ($user->email_verified_at) {
             return redirect()->back()->withErrors('User sudah terverifikasi.');
         }
-        $user->password = Hash::make('password');
+
+        // Generate password dari NIK dan phone
+        $nik = $user->nik; // Pastikan kolom NIK sesuai dengan nama kolom di tabel Anda
+        $phone = $user->phone; // Pastikan kolom phone sesuai dengan nama kolom di tabel Anda
+
+        $user->password = Hash::make($this->generatePassword($nik, $phone));
         $user->email_verified_at = now();
         $user->verified_by = auth('admin')->user()->id;
         $user->save();
@@ -36,5 +41,17 @@ class UserController extends Controller
         Mail::to($user->email)->send(new VerificationSuccessEmail($user));
 
         return redirect()->back()->with('success', 'User berhasil diverifikasi.');
+    }
+
+    private function generatePassword($nik, $phone){
+
+        // Ambil 4 digit terakhir dari NIK
+        $nikLastFour = substr($nik, -4);
+
+        // Ambil 4 digit terakhir dari phone
+        $phoneLastFour = substr($phone, -4);
+
+        // Gabungkan keduanya
+        return $nikLastFour . $phoneLastFour;
     }
 }

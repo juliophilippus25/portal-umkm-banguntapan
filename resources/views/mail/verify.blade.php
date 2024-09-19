@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Verifikasi Akun</title>
+    <title>Verifikasi Akun Pendaftar</title>
     <style type="text/css" rel="stylesheet" media="all">
         /* Base ------------------------------ */
         *:not(br):not(tr):not(html) {
@@ -213,7 +213,6 @@
                                 <!-- Body content -->
                                 <tr>
                                     <td class="content-cell">
-                                        <h1>Verifikasi Akun</h1>
                                         <p>Halo Admin,</p>
                                         <p>Pengguna baru telah mendaftar dengan detail sebagai berikut:</p>
                                         <table>
@@ -233,8 +232,11 @@
                                                 <td>{{ $details['business_name'] }}</td>
                                             </tr>
                                         </table>
-                                        <p>Silakan verifikasi pengguna ini melalui sistem admin.</p>
-
+                                        <br>
+                                        <p>
+                                            Detail lebih lanjut dapat dilihat pada sistem admin dan dapat memverifikasi
+                                            pengguna ini melalui sistem admin atau tombol dibawah ini.
+                                        </p>
                                         <p>Terima kasih!</p>
                                         <!-- Action -->
                                         <table class="body-action" align="center" width="100%" cellpadding="0"

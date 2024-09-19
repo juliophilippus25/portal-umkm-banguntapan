@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Verifikasi Akun</title>
+    <title>Verifikasi Akun Berhasil</title>
     <style type="text/css" rel="stylesheet" media="all">
         /* Base ------------------------------ */
         *:not(br):not(tr):not(html) {
@@ -213,9 +213,14 @@
                                 <!-- Body content -->
                                 <tr>
                                     <td class="content-cell">
-                                        <h1>Akun anda berhasil diverifikas</h1>
-                                        <p>Halo , {{ $user['name'] }}</p>
-                                        <p>Silahkan login ke sistem dengan data dibawah:</p>
+                                        <p>Halo, {{ $user['name'] }}.</p>
+                                        <p>
+                                            Selamat akun anda telah aktif, terima kasih telah mendaftar di website
+                                            Portal
+                                            Publikasi UMKM Banguntapan.
+                                        </p>
+                                        <p>Silakan login menggunakan email saat mendaftar dan gunakan format password
+                                            dibawah:</p>
                                         <table>
                                             <tr>
                                                 <td>Email</td>
@@ -225,12 +230,15 @@
                                             <tr>
                                                 <td>Password</td>
                                                 <td>:</td>
-                                                <td>{{ $user['password'] }}</td>
+                                                <td>
+                                                    Empat digit terakhir dari <b>NIK</b> anda dan empat digit terakhir
+                                                    dari <b>nomor HP</b>
+                                                </td>
                                             </tr>
-
                                         </table>
-
-                                        <p>Terima kasih!</p>
+                                        <p>Contoh: NIK <b>0123456789123456</b> dan nomor HP <b>0812345678</b>, maka
+                                            password anda adalah <b>34565678</b></p>
+                                        <p>Anda dapat mengakses halaman login dengan menekan tombol dibawah ini.</p>
                                         <!-- Action -->
                                         <table class="body-action" align="center" width="100%" cellpadding="0"
                                             cellspacing="0">
