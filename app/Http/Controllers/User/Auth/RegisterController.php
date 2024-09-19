@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\User\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\Business;
-use App\Models\BusinessType;
-use App\Models\SubDistrict;
 use App\Models\User;
+use App\Models\Business;
+use App\Models\SubDistrict;
+use App\Models\BusinessType;
 use Illuminate\Http\Request;
+use App\Mail\VerificationEmail;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -23,7 +25,7 @@ class RegisterController extends Controller
         $userId = $this->generateUniqueUserId();
         $businessId = $this->generateUniqueBusinessId();
 
-        User::create([
+        $user = User::create([
             'id' => $userId,
             'name' => $request->name,
             'phone' => $request->phone,
@@ -31,7 +33,7 @@ class RegisterController extends Controller
             'email' => $request->email
         ]);
 
-        Business::create([
+        $business = Business::create([
             'id' => $businessId,
             'user_id' => $userId,
             'business_name' => $request->business_name,
@@ -45,6 +47,14 @@ class RegisterController extends Controller
             'zip_code' => $request->zip_code,
         ]);
 
+        $details = [
+            'name' => $user['name'],
+            'email' =>$user['email'],
+            'business_name' => $business['business_name']
+        ];
+
+        Mail::to(env('MAIL_FROM_ADDRESS', 'noreply@umkmbanguntapan.com'))->send(new VerificationEmail($details));
+        
         toast('Berhasil mendaftar!.','success')->hideCloseButton()->autoClose(3000);
         return redirect('/register');
     }

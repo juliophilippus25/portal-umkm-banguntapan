@@ -48,7 +48,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-sm"><i class="bi bi-check"></i></a>
+                                            <a href="{{ route('admin.userVerify', $user->id) }}"
+                                                class="btn btn-primary btn-sm"><i class="bi bi-check"></i></a>
                                         </td>
                                     </tr>
                                 @empty
