@@ -56,7 +56,7 @@ class RegisterController extends Controller
         Mail::to(env('MAIL_FROM_ADDRESS', 'noreply@umkmbanguntapan.com'))->send(new VerificationEmail($details));
         
         toast('Berhasil mendaftar!.','success')->hideCloseButton()->autoClose(3000);
-        return redirect('/register');
+        return redirect()->route('user.register');
     }
 
     private function generateUniqueUserId()
