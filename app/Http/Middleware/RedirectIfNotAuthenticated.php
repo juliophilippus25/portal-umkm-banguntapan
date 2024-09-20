@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserRedirectIfAuthenticated
+class RedirectIfNotAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,12 @@ class UserRedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::guard('user')->check()) {
+        if (!Auth::guard('user')->check()) {
             return redirect()->route('user.dashboard')->with('message', 'Anda sudah masuk!');
+        } elseif (!Auth::guard('admin')->check()) {
+            return redirect()->route('admin.dashboard')->with('message', 'Anda sudah masuk!');
         } 
-
+        
         return $next($request);
     }
 }

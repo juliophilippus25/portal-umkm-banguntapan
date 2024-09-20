@@ -14,9 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'userRedirectIfAuthenticated' => \App\Http\Middleware\UserRedirectIfAuthenticated::class,
+            'RedirectIfAuthenticated' => \App\Http\Middleware\RedirectIfAuthenticated::class,
             'userRedirectIfNotAuthenticated' => \App\Http\Middleware\UserRedirectIfNotAuthenticated::class,
-            'adminRedirectIfAuthenticated' => \App\Http\Middleware\AdminRedirectIfAuthenticated::class,
             'adminRedirectIfNotAuthenticated' => \App\Http\Middleware\AdminRedirectIfNotAuthenticated::class,
         ]);
     })
