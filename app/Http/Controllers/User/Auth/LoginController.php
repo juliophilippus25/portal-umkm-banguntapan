@@ -20,13 +20,13 @@ class LoginController extends Controller
             toast('Anda berhasil masuk ke sistem.','success')->hideCloseButton()->autoClose(3000);
             return redirect()->intended(route('user.dashboard'));
         }
-
-        return redirect('/user/login')->with('error', 'Invalid credentials');
+        
+        return redirect()->route('user.showLogin')->with('error', 'Invalid credentials');
     }
 
     public function logout()
     {
-        Auth::guard()->logout();
+        Auth::guard('user')->logout();
         return redirect('/user/login');
     }
 }

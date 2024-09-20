@@ -21,7 +21,7 @@ class LoginController extends Controller
             return redirect()->intended(route('admin.dashboard'));
         }
 
-        return redirect('/admin/login')->with('error', 'Invalid credentials');
+        return redirect()->route('admin.showLogin')->with('error', 'Invalid credentials');
     }
 
     public function logout()

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\UserRedirectIfAuthenticated;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -12,31 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Middleware untuk admin
-        $middleware->redirectGuestsTo(function(Request $request){
-            if ($request->is('admin/*')) {
-                return route('admin.showLogin');
-            }
-        });
-
-        $middleware->redirectUsersTo(function(Request $request){
-            if ($request->is('admin/*') && auth('admin')->check()) {
-                return redirect()->route('admin.dashboard');
-            }
-        });
-
-        // Middleware untuk user
-        $middleware->redirectGuestsTo(function(Request $request){
-            if ($request->is('user/*')) {
-                return route('user.showLogin');
-            }
-        });
-
-        $middleware->redirectUsersTo(function(Request $request){
-            if ($request->is('user/*') && auth('user')->check()) {
-                return redirect()->route('user.dashboard');
-            }
-        });
+        $middleware->alias([
+            'userRedirectIfAuthenticated' => \App\Http\Middleware\UserRedirectIfAuthenticated::class,
+            'userRedirectIfNotAuthenticated' => \App\Http\Middleware\UserRedirectIfNotAuthenticated::class,
+            'adminRedirectIfAuthenticated' => \App\Http\Middleware\AdminRedirectIfAuthenticated::class,
+            'adminRedirectIfNotAuthenticated' => \App\Http\Middleware\AdminRedirectIfNotAuthenticated::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
