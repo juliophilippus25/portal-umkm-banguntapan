@@ -17,7 +17,8 @@ class UserRedirectIfNotAuthenticated
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('user')->check()) {
-            return redirect()->route('user.showLogin')->with('message', 'Anda sudah masuk!');
+            toast('Akses anda ditolak! Silakan login terlebih dahulu.','error')->hideCloseButton()->autoClose(3000);
+            return redirect()->route('user.showLogin');
         } 
 
         return $next($request);

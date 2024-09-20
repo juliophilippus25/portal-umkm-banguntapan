@@ -185,7 +185,6 @@
     <!-- Vendor JS Files -->
     <script src="{{ asset('NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-
 </body>
 
 </html>

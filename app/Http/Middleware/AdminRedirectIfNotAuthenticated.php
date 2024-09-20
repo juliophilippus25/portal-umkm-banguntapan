@@ -17,7 +17,8 @@ class AdminRedirectIfNotAuthenticated
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('admin')->check()) {
-            return redirect()->route('admin.showLogin')->with('message', 'Anda sudah masuk!');
+            toast('Akses anda ditolak! Silakan login terlebih dahulu.','error')->hideCloseButton()->autoClose(3000);
+            return redirect()->route('admin.showLogin');
         } 
 
         return $next($request);
