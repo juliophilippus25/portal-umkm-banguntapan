@@ -27,6 +27,7 @@ class LoginController extends Controller
             // Required
             'email.required' => 'Email tidak boleh kosong!',
             'password.required' => 'Kata sandi tidak boleh kosong!',
+            
             // Email
             'email.email' => 'Format email salah!',
             
