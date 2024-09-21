@@ -24,11 +24,11 @@ class LoginController extends Controller
         // Pesan
         [
             // Required
-            'username.required' => 'Username tidak boleh kosong!',
-            'password.required' => 'Kata sandi tidak boleh kosong!',
+            'username.required' => 'Username harus diisi.',
+            'password.required' => 'Kata sandi harus diisi.',
             
             // Min
-            'password.min' => 'Kata sandi minimal 8 karakter!',
+            'password.min' => 'Kata sandi harus memiliki setidaknya :min karakter.!',
         ]);
 
         if($validator->fails()){

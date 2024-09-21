@@ -65,9 +65,8 @@
                                     <form action="{{ route('admin.login') }}" method="POST" class="row g-3">
                                         @csrf
                                         <div class="col-12">
-                                            <label for="username" class="form-label" style="font-weight: 600">
-                                                Username <span style="color:Tomato;">*</span>
-                                            </label>
+                                            <label for="username" class="form-label">Username <span
+                                                    class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <input type="username" name="username"
                                                     class="form-control 
@@ -81,8 +80,8 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <strong for="password" class="form-label" style="font-weight: 600">Kata
-                                                Sandi <span style="color:Tomato;">*</span></strong>
+                                            <label for="password" class="form-label">Kata Sandi <span
+                                                    class="text-danger">*</span></label>
                                             <input type="password" name="password"
                                                 class="form-control 
                                                @error('password') is-invalid @elseerror('password') is-valid @enderror"

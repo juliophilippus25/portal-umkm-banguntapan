@@ -25,14 +25,14 @@ class LoginController extends Controller
         // Pesan
         [
             // Required
-            'email.required' => 'Email tidak boleh kosong!',
-            'password.required' => 'Kata sandi tidak boleh kosong!',
+            'email.required' => 'Email harus diisi.',
+            'password.required' => 'Kata sandi harus diisi.',
             
             // Email
             'email.email' => 'Format email salah!',
             
             // Min
-            'password.min' => 'Kata sandi minimal 8 karakter!',
+            'password.min' => 'Kata sandi harus memiliki setidaknya :min karakter.!',
         ]);
 
         if($validator->fails()){
