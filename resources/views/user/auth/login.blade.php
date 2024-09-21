@@ -59,25 +59,37 @@
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                                        <p class="text-center small">Enter your email & password to login</p>
+                                        <h5 class="card-title text-center pb-0 fs-4">Masuk ke Akun Anda</h5>
                                     </div>
 
-                                    <form action="{{ route('user.login') }}" method="POST"
-                                        class="row g-3 needs-validation" novalidate>
+                                    <form action="{{ route('user.login') }}" method="POST" class="row g-3">
                                         @csrf
                                         <div class="col-12">
-                                            <label for="email" class="form-label">Email</label>
-                                            <div class="input-group has-validation">
-                                                <input type="email" name="email" class="form-control" id="email"
-                                                    placeholder="Masukkan email anda" required>
+                                            <label for="email" class="form-label" style="font-weight: 600">
+                                                Email <span style="color:Tomato;">*</span>
+                                            </label>
+                                            <div class="input-group">
+                                                <input type="email" name="email"
+                                                    class="form-control 
+                                                    @error('email') is-invalid @enderror @if (old('email') && !$errors->has('email')) is-valid @endif"
+                                                    id="email" placeholder="Masukkan email anda"
+                                                    value="{{ old('email') }}" required>
+                                                @error('email')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="password" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="password"
-                                                placeholder="Masukkan password anda" required>
+                                            <strong for="password" class="form-label" style="font-weight: 600">Kata
+                                                Sandi <span style="color:Tomato;">*</span></strong>
+                                            <input type="password" name="password"
+                                                class="form-control 
+                                               @error('password') is-invalid @elseerror('password') is-valid @enderror"
+                                                id="password" placeholder="Masukkan kata sandi anda" required>
+                                            @error('password')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
 
                                         <div class="col-12">
