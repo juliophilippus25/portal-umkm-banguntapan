@@ -234,10 +234,9 @@
                                         </table>
                                         <br>
                                         <p>
-                                            Detail lebih lanjut dapat dilihat pada sistem admin dan dapat memverifikasi
-                                            pengguna ini melalui sistem admin atau tombol dibawah ini.
+                                            Detail lebih lanjut dapat dilihat pada sistem admin atau dapat klik tombol
+                                            dibawah ini.
                                         </p>
-                                        <p>Terima kasih!</p>
                                         <!-- Action -->
                                         <table class="body-action" align="center" width="100%" cellpadding="0"
                                             cellspacing="0">

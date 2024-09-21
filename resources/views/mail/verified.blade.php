@@ -221,7 +221,7 @@
                                         </p>
                                         <p>
                                             Silakan login menggunakan email <b>{{ $user['email'] }}</b> dan gunakan
-                                            format password
+                                            format kata sandi
                                             dibawah:
                                         </p>
                                         <table>
@@ -236,8 +236,10 @@
                                                 <td><b>Empat digit terakhir nomor HP anda</b></td>
                                             </tr>
                                         </table>
-                                        <p>Contoh: NIK <b>0123456789123456</b> dan nomor HP <b>0812345678</b>, maka
-                                            password anda adalah <b>34565678</b></p>
+                                        <p>Contoh: NIK <b>012345678912<u>3456</u></b> dan nomor HP
+                                            <b>08123456<u>7878</u></b>, maka
+                                            password anda adalah <b><u>34567878</u></b>
+                                        </p>
                                         <p>Anda dapat mengakses halaman login dengan menekan tombol dibawah ini.</p>
                                         <!-- Action -->
                                         <table class="body-action" align="center" width="100%" cellpadding="0"
