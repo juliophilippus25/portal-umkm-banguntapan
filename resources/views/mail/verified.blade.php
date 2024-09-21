@@ -213,27 +213,27 @@
                                 <!-- Body content -->
                                 <tr>
                                     <td class="content-cell">
-                                        <p>Halo, {{ $user['name'] }}.</p>
+                                        <p>Halo, <b>{{ $user['name'] }}</b>.</p>
                                         <p>
                                             Selamat akun anda telah aktif, terima kasih telah mendaftar di website
                                             Portal
                                             Publikasi UMKM Banguntapan.
                                         </p>
-                                        <p>Silakan login menggunakan email saat mendaftar dan gunakan format password
-                                            dibawah:</p>
+                                        <p>
+                                            Silakan login menggunakan email <b>{{ $user['email'] }}</b> dan gunakan
+                                            format password
+                                            dibawah:
+                                        </p>
                                         <table>
                                             <tr>
-                                                <td>Email</td>
-                                                <td>:</td>
-                                                <td>{{ $user['email'] }}</td>
+                                                <td><b>NIK</b></td>
+                                                <td><b>:</b></td>
+                                                <td><b>Empat digit terakhir NIK anda</b></td>
                                             </tr>
                                             <tr>
-                                                <td>Password</td>
-                                                <td>:</td>
-                                                <td>
-                                                    Empat digit terakhir dari <b>NIK</b> anda dan empat digit terakhir
-                                                    dari <b>nomor HP</b>
-                                                </td>
+                                                <td><b>Nomor HP</b></td>
+                                                <td><b>:</b></td>
+                                                <td><b>Empat digit terakhir nomor HP anda</b></td>
                                             </tr>
                                         </table>
                                         <p>Contoh: NIK <b>0123456789123456</b> dan nomor HP <b>0812345678</b>, maka
@@ -245,7 +245,8 @@
                                             <tr>
                                                 <td align="center">
                                                     <div>
-                                                        <a href="#" class="button button--blue">Login</a>
+                                                        <a href="{{ route('user.showLogin') }}"
+                                                            class="button button--blue">Login</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -257,7 +258,9 @@
                                                     <p class="sub">Jika ada masalah pada tombol, anda dapat klik link
                                                         di bawah
                                                     </p>
-                                                    <p class="sub"><a href="#">ini link</a></p>
+                                                    <p class="sub"><a
+                                                            href="{{ route('user.showLogin') }}">http://127.0.0.1:8000/user/login</a>
+                                                    </p>
                                                 </td>
                                             </tr>
                                         </table>
