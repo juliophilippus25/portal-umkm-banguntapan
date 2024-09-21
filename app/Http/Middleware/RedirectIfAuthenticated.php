@@ -17,11 +17,11 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::guard('user')->check()) {
-            toast('Akses anda ditolak!','error')->hideCloseButton()->autoClose(3000);
+            toast('Akses anda ditolak!','error')->timerProgressBar()->autoClose(5000);
 
             return redirect()->route('user.dashboard');
         } elseif (Auth::guard('admin')->check()) {
-            toast('Akses anda ditolak!','error')->hideCloseButton()->autoClose(3000);
+            toast('Akses anda ditolak!','error')->timerProgressBar()->autoClose(5000);
             return redirect()->route('admin.dashboard');
         } 
 

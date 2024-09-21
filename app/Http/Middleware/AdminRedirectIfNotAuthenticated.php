@@ -17,7 +17,7 @@ class AdminRedirectIfNotAuthenticated
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('admin')->check()) {
-            toast('Akses anda ditolak! Silakan login terlebih dahulu.','error')->hideCloseButton()->autoClose(3000);
+            toast('Akses anda ditolak! Silakan login terlebih dahulu.','error')->timerProgressBar()->autoClose(5000);
             return redirect()->route('admin.showLogin');
         } 
 
