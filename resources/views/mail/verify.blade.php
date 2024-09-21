@@ -213,23 +213,23 @@
                                 <!-- Body content -->
                                 <tr>
                                     <td class="content-cell">
-                                        <p>Halo Admin,</p>
+                                        <p>Halo <b>Admin</b>,</p>
                                         <p>Pengguna baru telah mendaftar dengan detail sebagai berikut:</p>
                                         <table>
                                             <tr>
-                                                <td>Nama</td>
-                                                <td>:</td>
-                                                <td>{{ $details['name'] }}</td>
+                                                <td><b>Nama</b></td>
+                                                <td><b>:</b></td>
+                                                <td><b>{{ $details['name'] }}</b></td>
                                             </tr>
                                             <tr>
-                                                <td>Email</td>
-                                                <td>:</td>
-                                                <td>{{ $details['email'] }}</td>
+                                                <td><b>Email</b></td>
+                                                <td><b>:</b></td>
+                                                <td><b>{{ $details['email'] }}</b></td>
                                             </tr>
                                             <tr>
-                                                <td>Nama Usaha</td>
-                                                <td>:</td>
-                                                <td>{{ $details['business_name'] }}</td>
+                                                <td><b>Nama UMKM</b></td>
+                                                <td><b>:</b></td>
+                                                <td><b>{{ $details['business_name'] }}</b></td>
                                             </tr>
                                         </table>
                                         <br>
@@ -244,7 +244,8 @@
                                             <tr>
                                                 <td align="center">
                                                     <div>
-                                                        <a href="#" class="button button--blue">Verifikasi
+                                                        <a href="{{ route('admin.users') }}"
+                                                            class="button button--blue">Verifikasi
                                                             Akun</a>
                                                     </div>
                                                 </td>
@@ -257,7 +258,9 @@
                                                     <p class="sub">Jika ada masalah pada tombol, anda dapat klik link
                                                         di bawah
                                                     </p>
-                                                    <p class="sub"><a href="#">ini link</a></p>
+                                                    <p class="sub"><a
+                                                            href="{{ route('admin.users') }}">http://127.0.0.1:8000/admin/users</a>
+                                                    </p>
                                                 </td>
                                             </tr>
                                         </table>
