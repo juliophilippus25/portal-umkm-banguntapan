@@ -6,20 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Admin
-Route::middleware('adminRedirectIfNotAuthenticated')->group(function () {
-    Route::post('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('admin.logout');
-    Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/users', [App\Http\Controllers\Admin\Users\UserController::class, 'index'])->name('admin.users');
-    Route::get('/admin/verify/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'verify'])->name('admin.userVerify');
-});
-
-// User
-Route::middleware('userRedirectIfNotAuthenticated')->group(function () {
-    Route::post('/user/logout', [App\Http\Controllers\User\Auth\LoginController::class, 'logout'])->name('user.logout');
-    Route::get('/user/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('user.dashboard');
-});
-
+// Route login dan register
 Route::middleware('RedirectIfAuthenticated')->group(function () {
     // User
     Route::get('/user/register', [App\Http\Controllers\User\Auth\RegisterController::class, 'showRegisterForm'])->name('user.showRegister');
@@ -30,4 +17,18 @@ Route::middleware('RedirectIfAuthenticated')->group(function () {
     // Admin
     Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.showLogin');
     Route::post('/admin/login/post', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login');
+});
+
+// Admin
+Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(function () {
+    Route::post('/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('admin.logout');
+    Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/users', [App\Http\Controllers\Admin\Users\UserController::class, 'index'])->name('admin.users');
+    Route::get('/verify/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'verify'])->name('admin.userVerify');
+});
+
+// User
+Route::middleware('userRedirectIfNotAuthenticated')->prefix('/user')->group(function () {
+    Route::post('/logout', [App\Http\Controllers\User\Auth\LoginController::class, 'logout'])->name('user.logout');
+    Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('user.dashboard');
 });
