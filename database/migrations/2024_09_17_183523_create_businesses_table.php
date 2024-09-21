@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('user_id', 8);
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('business_name');
-            $table->string('business_description')->nullable();
+            $table->string('business_description');
             $table->foreignId('business_type_id')->constrained('business_types')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('sub_district_id')->constrained('sub_districts')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('business_phone');

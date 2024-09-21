@@ -10,20 +10,95 @@ use Illuminate\Http\Request;
 use App\Mail\VerificationEmail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
     public function showRegisterForm(){
         $business_types = BusinessType::all();
         $sub_districts = SubDistrict::all();
-        $userId = $this->generateUniqueUserId();
-        $businessId = $this->generateUniqueBusinessId();
-        return view('user.auth.register', compact('business_types', 'sub_districts', 'userId', 'businessId'));
+
+        return view('user.auth.register', compact('business_types', 'sub_districts'));
     }
 
     public function register(Request $request){
         $userId = $this->generateUniqueUserId();
         $businessId = $this->generateUniqueBusinessId();
+
+        $validator = Validator::make($request->all(),
+        // Aturan
+        [
+            // Data Pengguna
+            'name' => 'required|string|min:3',
+            'phone' => 'required|digits_between:10,15',
+            'nik' => 'required|digits:16|unique:users,nik',
+            'email' => 'required|email|unique:users,email',
+
+            // Data UMKM
+            'business_name' => 'required|string|min:3',
+            'business_description' => 'required|string|min:3',
+            'business_type_id' => 'required',
+            'sub_district_id' => 'required',
+            'business_phone' => 'nullable|digits_between:10,15',
+            'website' => 'nullable|url',
+            'no_pirt' => 'nullable',
+            'address' => 'required|string',
+            'zip_code' => 'required|digits:5',
+        ],
+        // Pesan
+        [
+            // Required
+            'name.required' => 'Nama lengkap harus diisi.',
+            'phone.required' => 'Nomor HP harus diisi.',
+            'nik.required' => 'NIK harus diisi.',
+            'email.required' => 'Email harus diisi.',
+            'business_name.required' => 'Nama usaha harus diisi.',
+            'business_description.required' => 'Deskripsi usaha harus diisi.',
+            'business_type_id.required' => 'Jenis usaha harus diisi.',
+            'sub_district_id.required' => 'Kalurahan harus diisi.',
+            'address.required' => 'Alamat harus diisi.',
+            'zip_code.required' => 'Kode pos harus diisi.',
+
+            // Email
+            'email.email' => 'Format email salah.',
+
+            // Unique
+            'phone.unique' => 'Nomor HP sudah terdaftar.',
+            'nik.unique' => 'NIK sudah terdaftar.',
+            'email.unique' => 'Email sudah terdaftar.',
+
+            // String
+            'business_name.string' => 'Nama usaha harus berupa teks.',
+            'business_description.string' => 'Deskripi usaha harus berupa teks.',
+            'address.string' => 'Alamat harus berupa teks.',
+
+            // Numeric
+            'phone.numeric' => 'Nomor HP harus berupa angka.',
+            'business_phone.numeric' => 'Nomor HP harus berupa angka.',
+            'zip_code.numeric' => 'Nomor HP harus berupa angka.',
+
+            // Min
+            'name.min' => 'Nama lengkap harus memiliki setidaknya :min karakter.',
+            'business_name.min' => 'Nama usaha harus memiliki setidaknya :min karakter.',
+            'business_description.min' => 'Deskripsi usaha harus memiliki setidaknya :min karakter.',
+
+            // Digits_beetween
+            'phone.digits_between' => 'Nomor HP harus antara :min hingga :max karakter.',
+            'business_phone.digits_between' => 'Nomor HP harus antara :min hingga :max karakter.',
+
+            // Digits
+            'nik.digits' => 'NIK harus tepat :digits karakter.',
+            'zip_code.digits' => 'Kode pos harus tepat :digits karakter.',
+
+            // URL
+            'website.url' => 'URL/Link tidak valid. Contoh: http://example.com'
+        ]);
+
+        if($validator->fails()){
+            // redirect dengan pesan error
+            toast('Periksa kembali data anda.','error')->timerProgressBar()->autoClose(5000);
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $user = User::create([
             'id' => $userId,
@@ -55,7 +130,7 @@ class RegisterController extends Controller
 
         Mail::to(env('MAIL_FROM_ADDRESS', 'noreply@umkmbanguntapan.com'))->send(new VerificationEmail($details));
         
-        toast('Berhasil mendaftar!.','success')->hideCloseButton()->autoClose(3000);
+        toast('Berhasil mendaftar. Silakan menunggu verifikasi melalui email anda.','success')->hideCloseButton()->autoClose(5000);
         return redirect()->route('user.showRegister');
     }
 
