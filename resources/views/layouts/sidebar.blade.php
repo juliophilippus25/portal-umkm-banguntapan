@@ -36,9 +36,11 @@
             </li><!-- End Categories Nav --> --}}
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.bTypes') || request()->routeIs('admin.pTypes') ? 'active' : '' }}"
+                <a class="nav-link 
+                    {{ request()->routeIs('admin.bTypes') || request()->routeIs('admin.pTypes') ? 'active' : 'collapsed' }}"
                     data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-grid"></i><span>Kategori</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-grid"></i><span>Kategori</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="categories-nav"
                     class="nav-content collapse {{ request()->routeIs('admin.bTypes') || request()->routeIs('admin.pTypes') ? 'show' : '' }}"
@@ -57,6 +59,7 @@
                     </li>
                 </ul>
             </li><!-- End Categories Nav -->
+
 
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.subDistrict') ? 'active' : '' }}"
