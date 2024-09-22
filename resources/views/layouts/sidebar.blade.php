@@ -28,15 +28,15 @@
             </li><!-- End Categories Nav --> --}}
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.btypes') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('admin.bTypes') ? 'active' : '' }}"
                     data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-grid"></i><span>Kategori</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="categories-nav" class="nav-content collapse {{ request()->routeIs('admin.btypes') ? 'show' : '' }}"
+                <ul id="categories-nav" class="nav-content collapse {{ request()->routeIs('admin.bTypes') ? 'show' : '' }}"
                     data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="{{ route('admin.btypes') }}"
-                            class="{{ request()->routeIs('admin.btypes') ? 'active' : '' }}">
+                        <a href="{{ route('admin.bTypes') }}"
+                            class="{{ request()->routeIs('admin.bTypes') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Usaha</span>
                         </a>
                     </li>
@@ -49,7 +49,8 @@
             </li><!-- End Categories Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link {{ request()->routeIs('admin.subDistrict') ? 'active' : '' }}"
+                    href="{{ route('admin.subDistrict') }}">
                     <i class="bi bi-building"></i>
                     <span>Kalurahan</span>
                 </a>

@@ -26,7 +26,8 @@ Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(fu
     Route::get('/users', [App\Http\Controllers\Admin\Users\UserController::class, 'index'])->name('admin.users');
     Route::get('/verify/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'verify'])->name('admin.userVerify');
 
-    Route::get('/btypes', [App\Http\Controllers\Admin\BusinessTypeController::class, 'index'])->name('admin.btypes');
+    Route::get('/btypes', [App\Http\Controllers\Admin\BusinessTypeController::class, 'index'])->name('admin.bTypes');
+    Route::get('/sdistricts', [App\Http\Controllers\Admin\SubDistricController::class, 'index'])->name('admin.subDistrict');
 });
 
 // User
