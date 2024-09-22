@@ -705,7 +705,13 @@ h6 {
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: #012970;
+}
+
+/* Custom CSS */
+.sidebar-nav .nav-link.collapsed.active {
+  color: #4154f1;
+  background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover {
@@ -717,7 +723,9 @@ h6 {
   color: #4154f1;
 }
 
+/* Custom CSS */
 .sidebar-nav .nav-link .bi-chevron-down {
+  color: #012970;
   margin-right: 0;
   transition: transform 0.2s ease-in-out;
 }
