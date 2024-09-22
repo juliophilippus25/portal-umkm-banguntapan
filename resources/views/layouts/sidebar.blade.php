@@ -20,11 +20,32 @@
                 </a>
             </li><!-- End Users Nav -->
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="bi bi-grid"></i>
                     <span>Kategori</span>
                 </a>
+            </li><!-- End Categories Nav --> --}}
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('admin.btypes') ? 'active' : '' }}"
+                    data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-grid"></i><span>Kategori</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="categories-nav" class="nav-content collapse {{ request()->routeIs('admin.btypes') ? 'show' : '' }}"
+                    data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{{ route('admin.btypes') }}"
+                            class="{{ request()->routeIs('admin.btypes') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>Usaha</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tables-data.html">
+                            <i class="bi bi-circle"></i><span>Produk</span>
+                        </a>
+                    </li>
+                </ul>
             </li><!-- End Categories Nav -->
 
             <li class="nav-item">
