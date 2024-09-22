@@ -35,11 +35,11 @@ class Business extends Model
 
     public function businessType()
     {
-        return $this->hasOne(BusinessType::class);
+        return $this->belongsTo(BusinessType::class);
     }
 
     public function subDistrict()
     {
-        return $this->hasOne(SubDistrict::class);
+        return $this->belongsTo(SubDistrict::class);
     }
 }

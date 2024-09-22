@@ -9,7 +9,7 @@
             {{-- <h1>Manajemen Pengguna</h1> --}}
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Pengguna</li>
+                    <li class="breadcrumb-item active">UMKM</li>
 
                 </ol>
             </nav>
@@ -20,42 +20,29 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Manajemen Pengguna</h5>
+                        <h5 class="card-title">Manajemen UMKM</h5>
 
                         <!-- Default Table -->
                         <table class="table">
                             <thead>
 
                                 <tr>
-                                    <th scope="col">Nama Pemilik</th>
                                     <th scope="col">Nama UMKM</th>
-                                    <th scope="col">Tanggal Daftar</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Tanggal Bergabung</th>
+                                    <th scope="col">Jenis Usaha</th>
+                                    <th scope="col">Bertempat</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($users as $user)
+                                @forelse ($businesses as $item)
                                     <tr>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->business->business_name }}</td>
-                                        <td>{{ Carbon\Carbon::parse($user->business->created_at)->isoFormat('D MMMM Y') }}
-                                        </td>
+                                        <td>{{ $item->business_name }}</td>
+                                        <td>{{ Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM Y') }}</td>
+                                        <td>{{ $item->businessType->name }}</td>
+                                        <td>{{ $item->subDistrict->name }}</td>
                                         <td>
-                                            @if ($user->email_verified_at == null)
-                                                <span class="badge bg-danger">Belum Verifikasi</span>
-                                            @elseif ($user->email_verified_at)
-                                                <span class="badge bg-success">Terverifikasi</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($user->email_verified_at == null)
-                                                <a href="{{ route('admin.userVerify', $user->id) }}"
-                                                    class="btn btn-primary btn-sm"><i class="bi bi-check"></i></a>
-                                            @elseif ($user->email_verified_at)
-                                                -
-                                            @endif
-
+                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
                                         </td>
                                     </tr>
                                 @empty

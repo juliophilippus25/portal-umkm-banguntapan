@@ -9,8 +9,8 @@ class BusinessType extends Model
 {
     use HasFactory;
 
-    public function business()
+    public function businesses()
     {
-        return $this->belongsTo(Business::class, 'business_type_id');
+        return $this->hasMany(Business::class, 'business_type_id');
     }
 }

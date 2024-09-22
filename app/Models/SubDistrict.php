@@ -9,8 +9,8 @@ class SubDistrict extends Model
 {
     use HasFactory;
 
-    public function business()
+    public function businesses()
     {
-        return $this->belongsTo(Business::class, 'sub_district_id');
+        return $this->hasMany(Business::class, 'sub_district_id');
     }
 }

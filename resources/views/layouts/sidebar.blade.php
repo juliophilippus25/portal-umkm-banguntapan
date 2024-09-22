@@ -20,6 +20,14 @@
                 </a>
             </li><!-- End Users Nav -->
 
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('admin.business') ? 'active' : '' }}"
+                    href="{{ route('admin.business') }}">
+                    <i class="bi bi-shop"></i>
+                    <span>UMKM</span>
+                </a>
+            </li><!-- End UMKM Nav -->
+
             {{-- <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="bi bi-grid"></i>
