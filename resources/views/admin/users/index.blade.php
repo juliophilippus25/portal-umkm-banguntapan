@@ -6,7 +6,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Manajemen Pengguna</h1>
+            {{-- <h1>Manajemen Pengguna</h1> --}}
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">Pengguna</li>
@@ -20,7 +20,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Default Table</h5>
+                        <h5 class="card-title">Manajemen Pengguna</h5>
 
                         <!-- Default Table -->
                         <table class="table">
@@ -39,7 +39,8 @@
                                     <tr>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->business->business_name }}</td>
-                                        <td>{{ $user->business->created_at }}</td>
+                                        <td>{{ Carbon\Carbon::parse($user->business->created_at)->isoFormat('D MMMM Y') }}
+                                        </td>
                                         <td>
                                             @if ($user->email_verified_at == null)
                                                 <span class="badge bg-danger">Belum Verifikasi</span>
@@ -48,8 +49,13 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.userVerify', $user->id) }}"
-                                                class="btn btn-primary btn-sm"><i class="bi bi-check"></i></a>
+                                            @if ($user->email_verified_at == null)
+                                                <a href="{{ route('admin.userVerify', $user->id) }}"
+                                                    class="btn btn-primary btn-sm"><i class="bi bi-check"></i></a>
+                                            @elseif ($user->email_verified_at)
+                                                -
+                                            @endif
+
                                         </td>
                                     </tr>
                                 @empty
