@@ -28,6 +28,7 @@ Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(fu
 
     Route::get('/business', [App\Http\Controllers\Admin\BusinessController::class, 'index'])->name('admin.business');
     Route::get('/btypes', [App\Http\Controllers\Admin\BusinessTypeController::class, 'index'])->name('admin.bTypes');
+    Route::get('/ptypes', [App\Http\Controllers\Admin\ProductTypeController::class, 'index'])->name('admin.pTypes');
     Route::get('/sdistricts', [App\Http\Controllers\Admin\SubDistricController::class, 'index'])->name('admin.subDistrict');
 });
 

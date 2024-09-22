@@ -36,11 +36,12 @@
             </li><!-- End Categories Nav --> --}}
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.bTypes') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('admin.bTypes') || request()->routeIs('admin.pTypes') ? 'active' : '' }}"
                     data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-grid"></i><span>Kategori</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="categories-nav" class="nav-content collapse {{ request()->routeIs('admin.bTypes') ? 'show' : '' }}"
+                <ul id="categories-nav"
+                    class="nav-content collapse {{ request()->routeIs('admin.bTypes') || request()->routeIs('admin.pTypes') ? 'show' : '' }}"
                     data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="{{ route('admin.bTypes') }}"
@@ -49,7 +50,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="tables-data.html">
+                        <a href="{{ route('admin.pTypes') }}"
+                            class="{{ request()->routeIs('admin.pTypes') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Produk</span>
                         </a>
                     </li>
