@@ -13,6 +13,53 @@
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
 
+            <li class="nav-item dropdown">
+
+                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                    <i class="bi bi-bell"></i>
+                    <span class="badge bg-primary badge-number">{{ $countUnverifiedUsers }}</span>
+                </a><!-- End Notification Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                    <li class="dropdown-header">
+                        Anda memiliki {{ $countUnverifiedUsers }} notifikasi baru
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    @if ($countUnverifiedUsers > 0)
+                        @foreach ($getUnverifiedUsers as $user)
+                            <li class="notification-item">
+                                <i class="bi bi-info-circle text-primary"></i>
+                                <div>
+                                    <h4>Akun belum terverifikasi</h4>
+                                    <p>{{ $user->name }} - {{ $user->business->business_name }}</p>
+                                    <p>{{ $user->created_at->diffForHumans() }}</p>
+                                </div>
+                            </li>
+                        @endforeach
+                    @else
+                        <li class="notification-item">
+                            <div>
+                                <h4>Tidak ada notifikasi baru</h4>
+                            </div>
+                        </li>
+                    @endif
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li class="dropdown-footer">
+                        <a href="{{ route('admin.users') }}"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat
+                                Semua</span></a>
+                    </li>
+
+                </ul><!-- End Notification Dropdown Items -->
+
+            </li><!-- End Notification Nav -->
+
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">

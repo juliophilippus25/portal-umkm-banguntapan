@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Jenis Produk')
 
 @section('main')
     <main id="main" class="main">
