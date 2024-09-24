@@ -9,7 +9,11 @@ use App\Models\Business;
 class BusinessController extends Controller
 {
     public function index(){
-        $businesses = Business::with(['businessType', 'subDistrict'])->get();
+        $businesses = Business::with(['businessType', 'subDistrict'])
+        ->whereHas('user', function ($query) {
+            $query->whereNotNull('verified_by');
+        })
+        ->get();
 
         return view('admin.businesses.index', compact('businesses'));
     }
