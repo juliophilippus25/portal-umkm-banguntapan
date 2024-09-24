@@ -26,11 +26,11 @@
                         <table id="myTable" class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nama Pemilik</th>
-                                    <th scope="col">Nama UMKM</th>
-                                    <th scope="col">Tanggal Daftar</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Aksi</th>
+                                    <th scope="col-3">Nama Pemilik</th>
+                                    <th scope="col-3">Nama UMKM</th>
+                                    <th scope="col=2">Tanggal Daftar</th>
+                                    <th scope="col-2">Status</th>
+                                    <th scope="col-2">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,10 +49,13 @@
                                         </td>
                                         <td>
                                             @if ($user->email_verified_at == null)
-                                                <a href="{{ route('admin.userVerify', $user->id) }}"
-                                                    class="btn btn-primary btn-sm"><i class="bi bi-check"></i></a>
+                                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#verifyModal{{ $user->id }}">
+                                                    <i class="bi bi-check"></i>
+                                                </button>
                                             @elseif ($user->email_verified_at)
-                                                -
+                                                <a href="#" class="btn btn-primary btn-sm"><i
+                                                        class="bi bi-eye"></i></a>
                                             @endif
 
                                         </td>
@@ -66,6 +69,112 @@
             </div>
 
         </section>
+
+        {{-- Modal --}}
+        @foreach ($users as $user)
+            <div class="modal fade" id="verifyModal{{ $user->id }}" tabindex="-1">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Verifikasi Akun</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Data Penanggung Jawab -->
+                            <table class="table-borderless w-100 mb-4">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" class="text-center fw-bold fs-4">Data Penanggung Jawab</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold" style="width: 45%">Nama Pemilik</td>
+                                        <td>:</td>
+                                        <td style="width: 55%">{{ $user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Nomor HP</td>
+                                        <td>:</td>
+                                        <td>{{ $user->phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">NIK</td>
+                                        <td>:</td>
+                                        <td>{{ $user->nik }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Email</td>
+                                        <td>:</td>
+                                        <td>{{ $user->email }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- Data UMKM -->
+                            <table class="table-borderless w-100">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" class="text-center fw-bold fs-4">Data UMKM</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold" style="width: 45%">Nama Usaha</td>
+                                        <td>:</td>
+                                        <td style="width: 55%">{{ $user->business->business_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Deskripsi Usaha</td>
+                                        <td>:</td>
+                                        <td>{{ $user->business->business_description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Jenis Usaha</td>
+                                        <td>:</td>
+                                        <td>{{ $user->business->businessType->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Kalurahan</td>
+                                        <td>:</td>
+                                        <td>{{ $user->business->subDistrict->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Alamat Usaha</td>
+                                        <td>:</td>
+                                        <td>{{ $user->business->address }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Kode Pos</td>
+                                        <td>:</td>
+                                        <td>{{ $user->business->zip_code }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Nomor HP Usaha</td>
+                                        <td>:</td>
+                                        <td>{{ $user->business->business_phone ?? 'Belum Diisi' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Nomor Sertifikat PIRT</td>
+                                        <td>:</td>
+                                        <td>{{ $user->business->no_pirt ?? 'Belum Diisi' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Website</td>
+                                        <td>:</td>
+                                        <td>{{ $user->business->website ?? 'Belum Diisi' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
+                            <a href="{{ route('admin.userVerify', $user->id) }}" class="btn btn-primary">Verifikasi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
 
     </main><!-- End #main -->
 

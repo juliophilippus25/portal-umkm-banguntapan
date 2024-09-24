@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificationSuccessEmail;
+use App\Models\Business;
 
 class UserController extends Controller
 {
@@ -20,12 +21,14 @@ class UserController extends Controller
     public function verify($id)
     {
         if (!auth('admin')->check()) {
-            return redirect()->route('admin.login')->withErrors('Anda harus login sebagai admin.');
+            toast('Anda harus login sebagai admin.','error')->timerProgressBar()->autoClose(5000);
+            return redirect()->route('admin.login');
         }
 
         $user = User::findOrFail($id);
 
         if ($user->email_verified_at) {
+            toast('User sudah terverifikasi.','error')->timerProgressBar()->autoClose(5000);
             return redirect()->back()->withErrors('User sudah terverifikasi.');
         }
 
@@ -40,7 +43,8 @@ class UserController extends Controller
 
         Mail::to($user->email)->send(new VerificationSuccessEmail($user));
 
-        return redirect()->back()->with('success', 'User berhasil diverifikasi.');
+        toast('User berhasil diverifikasi.','success')->timerProgressBar()->autoClose(5000);
+        return redirect()->back();
     }
 
     private function generatePassword($nik, $phone){
