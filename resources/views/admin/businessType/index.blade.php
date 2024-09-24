@@ -23,9 +23,8 @@
                         <h5 class="card-title">Manajemen Jenis Usaha</h5>
 
                         <!-- Default Table -->
-                        <table class="table">
+                        <table id="myTable" class="table">
                             <thead>
-
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Jenis Usaha</th>
@@ -33,22 +32,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($bTypes as $item)
+                                @foreach ($bTypes as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>-</td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5">
-                                            <strong class="text-dark">
-                                                <center>Tidak ada data.</center>
-                                            </strong>
-                                        </td>
-                                    </tr>
-                                @endforelse
-
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Default Table Example -->

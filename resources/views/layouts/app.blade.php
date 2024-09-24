@@ -72,6 +72,22 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('NiceAdmin/assets/js/main.js') }}"></script>
 
+    <script>
+        const dataTable = new simpleDatatables.DataTable("#myTable", {
+            searchable: true,
+            fixedHeight: true,
+            perPage: 5,
+            labels: {
+                placeholder: "Cari...",
+                searchTitle: "Cari di dalam tabel",
+                perPage: "data per halaman",
+                pageTittle: "Halaman {page}",
+                noRows: "Tidak ada data yang tersedia.",
+                info: "Menampilkan {start} hingga {end} dari {rows} data",
+                noResults: "Tidak ada data yang ditemukan."
+            }
+        });
+    </script>
 </body>
 
 </html>

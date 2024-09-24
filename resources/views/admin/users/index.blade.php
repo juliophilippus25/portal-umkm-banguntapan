@@ -23,9 +23,8 @@
                         <h5 class="card-title">Manajemen Pengguna</h5>
 
                         <!-- Default Table -->
-                        <table class="table">
+                        <table id="myTable" class="table">
                             <thead>
-
                                 <tr>
                                     <th scope="col">Nama Pemilik</th>
                                     <th scope="col">Nama UMKM</th>
@@ -35,7 +34,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($users as $user)
+                                @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->business->business_name }}</td>
@@ -58,16 +57,7 @@
 
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5">
-                                            <strong class="text-dark">
-                                                <center>Tidak ada data.</center>
-                                            </strong>
-                                        </td>
-                                    </tr>
-                                @endforelse
-
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Default Table Example -->

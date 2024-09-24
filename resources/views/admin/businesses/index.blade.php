@@ -23,7 +23,7 @@
                         <h5 class="card-title">Manajemen UMKM</h5>
 
                         <!-- Default Table -->
-                        <table class="table">
+                        <table id="myTable" class="table">
                             <thead>
 
                                 <tr>
@@ -35,7 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($businesses as $item)
+                                @foreach ($businesses as $item)
                                     <tr>
                                         <td>{{ $item->business_name }}</td>
                                         <td>{{ Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM Y') }}</td>
@@ -45,15 +45,7 @@
                                             <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5">
-                                            <strong class="text-dark">
-                                                <center>Tidak ada data.</center>
-                                            </strong>
-                                        </td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
 
                             </tbody>
                         </table>
