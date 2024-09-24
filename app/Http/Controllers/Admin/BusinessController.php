@@ -13,6 +13,7 @@ class BusinessController extends Controller
         ->whereHas('user', function ($query) {
             $query->whereNotNull('verified_by');
         })
+        ->orderBy('created_at', 'desc')
         ->get();
 
         return view('admin.businesses.index', compact('businesses'));

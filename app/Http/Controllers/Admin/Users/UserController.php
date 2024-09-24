@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificationSuccessEmail;
-use App\Models\Business;
 
 class UserController extends Controller
 {
     public function index(){
-        $users = User::with('business')->get();
+        $users = User::with(['business', 'admin'])
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         return view('admin.users.index', compact('users'));
     }
@@ -29,7 +29,7 @@ class UserController extends Controller
 
         if ($user->email_verified_at) {
             toast('User sudah terverifikasi.','error')->timerProgressBar()->autoClose(5000);
-            return redirect()->back()->withErrors('User sudah terverifikasi.');
+            return redirect()->back();
         }
 
         // Generate password dari NIK dan phone

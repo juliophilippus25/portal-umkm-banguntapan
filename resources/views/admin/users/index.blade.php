@@ -38,7 +38,8 @@
                                     <tr>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->business->business_name }}</td>
-                                        <td>{{ Carbon\Carbon::parse($user->business->created_at)->isoFormat('D MMMM Y') }}
+                                        <td>
+                                            {{ Carbon\Carbon::parse($user->business->created_at)->isoFormat('D MMMM Y') }}
                                         </td>
                                         <td>
                                             @if ($user->email_verified_at == null)
@@ -50,12 +51,14 @@
                                         <td>
                                             @if ($user->email_verified_at == null)
                                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#verifyModal{{ $user->id }}">
+                                                    data-bs-target="#verifyModal{{ $user->id }}" title="Verifikasi">
                                                     <i class="bi bi-check"></i>
                                                 </button>
                                             @elseif ($user->email_verified_at)
-                                                <a href="#" class="btn btn-primary btn-sm"><i
-                                                        class="bi bi-eye"></i></a>
+                                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#detailModal{{ $user->id }}" title="Detail">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
                                             @endif
 
                                         </td>
@@ -70,7 +73,7 @@
 
         </section>
 
-        {{-- Modal --}}
+        {{-- Verify Modal --}}
         @foreach ($users as $user)
             <div class="modal fade" id="verifyModal{{ $user->id }}" tabindex="-1">
                 <div class="modal-dialog modal-md">
@@ -175,6 +178,64 @@
                 </div>
             </div>
         @endforeach
+        {{-- End Verify Modal --}}
+
+        {{-- Show Modal --}}
+        @foreach ($users as $user)
+            <div class="modal fade" id="detailModal{{ $user->id }}" tabindex="-1">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Detail Akun</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Data Penanggung Jawab -->
+                            <table class="table-borderless w-100 mb-4">
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold" style="width: 45%">Nama</td>
+                                        <td>:</td>
+                                        <td style="width: 55%">{{ $user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Nomor HP</td>
+                                        <td>:</td>
+                                        <td>{{ $user->phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">NIK</td>
+                                        <td>:</td>
+                                        <td>{{ $user->nik }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Email</td>
+                                        <td>:</td>
+                                        <td>{{ $user->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Bergabung Sejak</td>
+                                        <td>:</td>
+                                        <td>
+                                            {{ Carbon\Carbon::parse($user->email_verified_at)->isoFormat('D MMMM Y') }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Diverifikasi Oleh</td>
+                                        <td>:</td>
+                                        <td>{{ $user->admin ? $user->admin->name : 'Belum Diverifikasi' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        {{-- End Show Modal --}}
 
     </main><!-- End #main -->
 

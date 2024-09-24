@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Business::class);
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'verified_by');
+    }
 }

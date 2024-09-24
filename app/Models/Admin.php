@@ -46,4 +46,9 @@ class Admin extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'verified_by');
+    }
 }
