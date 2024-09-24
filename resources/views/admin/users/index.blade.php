@@ -43,7 +43,7 @@
                                         </td>
                                         <td>
                                             @if ($user->email_verified_at == null)
-                                                <span class="badge bg-danger">Belum Verifikasi</span>
+                                                <span class="badge bg-danger">Belum Diverifikasi</span>
                                             @elseif ($user->email_verified_at)
                                                 <span class="badge bg-success">Terverifikasi</span>
                                             @endif
