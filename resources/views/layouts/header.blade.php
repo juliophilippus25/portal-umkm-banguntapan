@@ -21,13 +21,19 @@
                     </a><!-- End Notification Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                        <li class="dropdown-header">
-                            Anda memiliki {{ $countUnverifiedUsers }} notifikasi baru
-                        </li>
+                        @if ($countUnverifiedUsers > 0)
+                            <li class="dropdown-header">
+                                Anda memiliki {{ $countUnverifiedUsers }} notifikasi baru
+                            </li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                        @else
+                            <li class="dropdown-header">
+                                Tidak ada notifikasi baru
+                            </li>
+                        @endif
 
                         @if ($countUnverifiedUsers > 0)
                             @foreach ($getUnverifiedUsers as $user)
@@ -39,25 +45,18 @@
                                         <p>{{ $user->created_at->diffForHumans() }}</p>
                                     </div>
                                 </li>
+
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                            @endforeach
-                        @else
-                            <li class="notification-item">
-                                <div>
-                                    <h4>Tidak ada notifikasi baru</h4>
-                                </div>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                        @endif
 
-                        <li class="dropdown-footer">
-                            <a href="{{ route('admin.users') }}"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat
-                                    Semua</span></a>
-                        </li>
+                                <li class="dropdown-footer">
+                                    <a href="{{ route('admin.users') }}"><span
+                                            class="badge rounded-pill bg-primary p-2 ms-2">Lihat
+                                            Semua</span></a>
+                                </li>
+                            @endforeach
+                        @endif
 
                     </ul><!-- End Notification Dropdown Items -->
                 </li><!-- End Notification Nav -->

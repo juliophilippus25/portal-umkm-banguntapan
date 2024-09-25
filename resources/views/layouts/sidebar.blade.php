@@ -80,7 +80,8 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ request()->routeIs('user.products') ? 'active' : '' }}"
+                    href="{{ route('user.products') }}">
                     <i class="bi bi-bag"></i>
                     <span>Produk</span>
                 </a>

@@ -42,4 +42,9 @@ class Business extends Model
     {
         return $this->belongsTo(SubDistrict::class);
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'business_id');
+    }
 }
