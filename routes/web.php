@@ -36,5 +36,9 @@ Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(fu
 Route::middleware('userRedirectIfNotAuthenticated')->prefix('/user')->group(function () {
     Route::post('/logout', [App\Http\Controllers\User\Auth\LoginController::class, 'logout'])->name('user.logout');
     Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('user.dashboard');
+
+    // Produk
     Route::get('/products', [App\Http\Controllers\User\ProductController::class, 'index'])->name('user.products');
+    Route::get('/products/create', [App\Http\Controllers\User\ProductController::class, 'create'])->name('user.products.create');
+    Route::post('/products/store', [App\Http\Controllers\User\ProductController::class, 'store'])->name('user.products.store');
 });

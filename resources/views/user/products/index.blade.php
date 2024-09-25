@@ -19,9 +19,12 @@
 
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="card-title">Manajemen Produk</h5>
-
+                        <a href="{{ route('user.products.create') }}" class="btn btn-primary" title="Tambah">
+                            <i class="bi bi-plus"></i> Produk</a>
+                    </div>
+                    <div class="card-body">
                         <!-- Default Table -->
                         <table id="myTable" class="table">
                             <thead>
