@@ -30,6 +30,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Nama Iklan</th>
+                                    <th scope="col">Tanggal Iklan</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -37,6 +38,10 @@
                                 @foreach ($advertisements as $item)
                                     <tr>
                                         <td>{{ $item->name }}</td>
+                                        <td>
+                                            {{ Carbon\Carbon::parse($item->ad_start)->isoFormat('D MMMM Y') }} -
+                                            {{ Carbon\Carbon::parse($item->ad_end)->isoFormat('D MMMM Y') }}
+                                        </td>
                                         <td>-</td>
                                     </tr>
                                 @endforeach
