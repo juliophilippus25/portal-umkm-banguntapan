@@ -187,12 +187,13 @@
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
-                                                <label for="business_phone" class="form-label">Nomor HP Usaha</label>
+                                                <label for="business_phone" class="form-label">Nomor HP Usaha <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="text" inputmode="numeric" name="business_phone"
                                                     class="form-control @error('business_phone') is-invalid @enderror @if (old('business_phone') && !$errors->has('business_phone')) is-valid @endif"
                                                     id="business_phone" placeholder="Masukkan nomor HP usaha anda"
                                                     value="{{ old('business_phone') }}"
-                                                    onkeypress="return isNumberKey(event)">
+                                                    onkeypress="return isNumberKey(event)" required>
                                                 @error('business_phone')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('business_description');
             $table->foreignId('business_type_id')->constrained('business_types')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('sub_district_id')->constrained('sub_districts')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('business_phone')->nullable();
+            $table->string('business_phone');
             $table->string('website')->nullable();
             $table->string('no_pirt')->nullable();
             $table->string('address')->nullable();

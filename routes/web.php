@@ -41,4 +41,7 @@ Route::middleware('userRedirectIfNotAuthenticated')->prefix('/user')->group(func
     Route::get('/products', [App\Http\Controllers\User\ProductController::class, 'index'])->name('user.products');
     Route::get('/products/create', [App\Http\Controllers\User\ProductController::class, 'create'])->name('user.products.create');
     Route::post('/products/store', [App\Http\Controllers\User\ProductController::class, 'store'])->name('user.products.store');
+
+    // Iklan
+    Route::get('/advertisements', [App\Http\Controllers\User\AdvertisementController::class, 'index'])->name('user.advertisements');
 });

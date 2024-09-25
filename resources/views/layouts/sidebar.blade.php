@@ -88,7 +88,8 @@
             </li><!-- End Produk Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ request()->routeIs('user.advertisements') ? 'active' : '' }}"
+                    href="{{ route('user.advertisements') }}">
                     <i class="bi bi-badge-ad"></i>
                     <span>Iklan</span>
                 </a>
