@@ -171,7 +171,7 @@
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                             <a href="{{ route('admin.userVerify', $user->id) }}" class="btn btn-primary">Verifikasi</a>
                         </div>
                     </div>
@@ -197,6 +197,15 @@
                                         <td class="fw-bold" style="width: 45%">Nama</td>
                                         <td>:</td>
                                         <td style="width: 55%">{{ $user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Nama Usaha</td>
+                                        <td>:</td>
+                                        <td>
+                                            <a href="{{ route('admin.business.show', $user->business->id) }}">
+                                                {{ $user->business->business_name }}
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">Nomor HP</td>
@@ -229,7 +238,7 @@
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         </div>
                     </div>
                 </div>

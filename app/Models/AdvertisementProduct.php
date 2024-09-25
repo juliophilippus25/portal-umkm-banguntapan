@@ -19,8 +19,8 @@ class AdvertisementProduct extends Model
         return $this->belongsTo(Advertisement::class);
     }
 
-    public function products()
+    public function product()
     {
-        return $this->belongsToMany(Product::class, 'advertisement_products');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

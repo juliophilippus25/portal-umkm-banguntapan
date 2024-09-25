@@ -47,4 +47,9 @@ class Business extends Model
     {
         return $this->hasMany(Product::class, 'business_id');
     }
+
+    public function advertisements()
+    {
+        return $this->hasMany(Advertisement::class, 'business_id');
+    }
 }

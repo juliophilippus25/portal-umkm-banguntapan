@@ -42,7 +42,8 @@
                                         <td>{{ $item->businessType->name }}</td>
                                         <td>{{ $item->subDistrict->name }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                            <a href="{{ route('admin.business.show', $item->id) }}"
+                                                class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

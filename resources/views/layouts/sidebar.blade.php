@@ -21,7 +21,7 @@
             </li><!-- End Users Nav -->
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.business') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('admin.business*') ? 'active' : '' }}"
                     href="{{ route('admin.business') }}">
                     <i class="bi bi-shop"></i>
                     <span>UMKM</span>
@@ -80,7 +80,7 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('user.products') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('user.products*') ? 'active' : '' }}"
                     href="{{ route('user.products') }}">
                     <i class="bi bi-bag"></i>
                     <span>Produk</span>
@@ -88,7 +88,7 @@
             </li><!-- End Produk Nav -->
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('user.advertisements') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('user.advertisements*') ? 'active' : '' }}"
                     href="{{ route('user.advertisements') }}">
                     <i class="bi bi-badge-ad"></i>
                     <span>Iklan</span>
