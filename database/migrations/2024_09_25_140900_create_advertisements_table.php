@@ -18,8 +18,6 @@ return new class extends Migration
             $table->date('ad_end');
             $table->string('business_id', 8);
             $table->foreign('business_id')->references('id')->on('businesses')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('product_id', 8);
-            $table->foreign('product_id')->references('id')->on('products')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('image')->nullable();
             $table->timestamps();
         });

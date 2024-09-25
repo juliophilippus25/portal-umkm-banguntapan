@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="card-title">Manajemen Iklan</h5>
-                        <a href="#" class="btn btn-primary" title="Tambah">
+                        <a href="{{ route('user.advertisements.create') }}" class="btn btn-primary" title="Tambah">
                             <i class="bi bi-plus"></i> Iklan</a>
                     </div>
                     <div class="card-body">
@@ -34,7 +34,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @foreach ($advertisements as $item)
+                                    <tr>
+                                        <td>{{ $item->name }}</td>
+                                        <td>-</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Default Table Example -->

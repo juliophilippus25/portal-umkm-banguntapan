@@ -12,7 +12,17 @@ use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::with(['business', 'productType'])->get();
+        // Mengambil user yang sedang login
+        $authUserId = auth('user')->user()->id;
+
+        // Mengambil ID dari bisnis
+        $businessId = Business::where('user_id', $authUserId)->pluck('id')->first();
+
+        // Mengambil produk sesuai dengan businessId
+        $products = Product::with(['business', 'productType'])
+            ->where('business_id', $businessId)
+            ->get();
+            
         return view('user.products.index', compact('products'));
     }
 

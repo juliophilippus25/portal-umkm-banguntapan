@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                         <label>Gambar</label>
-                                        <small class="text-danger"><em>Unggah gambar dengan format jpg/jpeg/png dan
+                                        <small class="text-muted"><em>Unggah gambar dengan format jpg/jpeg/png dan
                                                 maksimal ukuran gambar 2mb</em></small>
                                         <div class="col-md-12">
                                             <img id="preview" class="mt-2" width="150" height="150" />
