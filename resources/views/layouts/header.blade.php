@@ -17,7 +17,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number">{{ $countUnverifiedUsers }}</span>
+                        @if ($countUnverifiedUsers < 0)
+                            <span class="badge bg-primary badge-number">{{ $countUnverifiedUsers }}</span>
+                        @endif
                     </a><!-- End Notification Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
