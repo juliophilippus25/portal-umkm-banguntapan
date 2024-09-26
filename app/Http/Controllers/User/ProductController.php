@@ -21,6 +21,7 @@ class ProductController extends Controller
         // Mengambil produk sesuai dengan businessId
         $products = Product::with(['business', 'productType'])
         ->where('business_id', $businessId)
+        ->orderBy('created_at', 'desc')
         ->get();
         
         return view('user.products.index', compact('products'));
@@ -45,14 +46,21 @@ class ProductController extends Controller
         // Aturan
         [
             'name' => 'required|string|min:3',
-            'product_type_id' => 'required',
+            'description' => 'required|string|min:3',
+            'price' => 'required',
+            'product_type_id' => 'required|exists:product_types,id',
             'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',        
         ],
         // Pesan
         [
             // Required
             'name.required' => 'Nama produk harus diisi.',
+            'description.required' => 'Description produk harus diisi.',
+            'price.required' => 'Harga produk harus diisi.',
             'product_type_id.required' => 'Jenis produk harus dipilih.',
+
+            // Exists
+            'product_type_id.exists' => 'Jenis produk yang dipilih tidak valid.',
             
             // Mimes
             'image.mimes' => 'Gambar harus berupa file dengan format: jpg, jpeg, png.',
@@ -77,12 +85,17 @@ class ProductController extends Controller
             $image = NULL;
         }
 
+        $price = str_replace(['Rp ', '.', ','], '', $request->price);
+
+        // dd($price);
+
         Product::create([
             'id' => $productId,
             'name' => $request->name,
+            'description' => $request->description,
+            'price' => $price,
             'business_id' => $businessId,
             'product_type_id' => $request->product_type_id,
-            'price' => $request->price,
             'image' => $image
         ]);
 
@@ -110,6 +123,72 @@ class ProductController extends Controller
         }
 
         return $prefix . $formattedProductTypeId . $newNumber; // Contoh format: PR010001, PR020001
+    }
+
+    public function edit($id){
+        $product = Product::find($id);
+        $product_types = ProductType::all();
+
+        return view('user.products.edit', compact('product', 'product_types'));
+    }
+
+    public function update(Request $request, $id){
+        $product = Product::find($id);
+        $validator = Validator::make($request->all(),
+        // Aturan
+        [
+            'name' => 'required|string|min:3',
+            'description' => 'required|string|min:3',
+            'price' => 'required',
+            'product_type_id' => 'required|exists:product_types,id',
+            'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',        
+        ],
+        // Pesan
+        [
+            // Required
+            'name.required' => 'Nama produk harus diisi.',
+            'description.required' => 'Description produk harus diisi.',
+            'price.required' => 'Harga produk harus diisi.',
+            'product_type_id.required' => 'Jenis produk harus dipilih.',
+
+            // Exists
+            'product_type_id.exists' => 'Jenis produk yang dipilih tidak valid.',
+            
+            // Mimes
+            'image.mimes' => 'Gambar harus berupa file dengan format: jpg, jpeg, png.',
+            
+            // Max
+            'image.max' => 'Ukuran file gambar tidak boleh lebih dari 2MB.',
+        ]);
+
+        if($validator->fails()){
+            // redirect dengan pesan error
+            toast('Periksa kembali data anda.','error')->timerProgressBar()->autoClose(5000);
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // Proses upload image
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $extension = $request->image->getClientOriginalExtension();
+            $fileName = time() . '.' . $extension;
+            $image = $request->file('image')->storeAs('images/products', $fileName);
+            $image = $fileName;
+        } else {
+            $image = NULL;
+        }
+
+        $price = str_replace(['Rp ', '.', ','], '', $request->price);
+
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $price;
+        $product->product_type_id = $request->input('product_type_id');
+        $product->image = $image;
+
+        $product->update();
+
+        toast('Berhasil mengubah produk.','success')->timerProgressBar()->autoClose(5000);
+        return redirect()->route('user.products');;
     }
 
     public function destroy($id) {

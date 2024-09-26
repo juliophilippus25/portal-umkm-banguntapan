@@ -10,7 +10,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Produk</li>
-                    <li class="breadcrumb-item active">Tambah</li>
+                    <li class="breadcrumb-item active">Edit {{ $product->name }}</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -20,8 +20,10 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Tambah Produk</h5>
-                        <form action="{{ route('user.products.store') }}" method="POST" enctype="multipart/form-data">
+                        <h5 class="card-title">Edit {{ $product->name }}</h5>
+                        <form action="{{ route('user.products.update', $product->id) }}" method="POST"
+                            enctype="multipart/form-data">
+                            @method('PUT')
                             @csrf
                             <div class="form-group mt-2">
                                 <div class="row">
@@ -31,7 +33,7 @@
                                         <input type="text" name="name"
                                             class="form-control @error('name') is-invalid @enderror @if (old('name') && !$errors->has('name')) is-valid @endif"
                                             id="name" placeholder="Masukkan nama produk anda"
-                                            value="{{ old('name') }}" required>
+                                            value="{{ old('name', $product->name) }}" required>
                                         @error('name')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -41,7 +43,7 @@
                                             <span class="text-danger">*</span></label>
                                         <textarea name="description" cols="30" rows="3"
                                             class="form-control @error('description') is-invalid @enderror @if (old('description') && !$errors->has('description')) is-valid @endif"
-                                            id="description" placeholder="Masukkan deskripsi produk anda" required>{{ old('description') }}</textarea>
+                                            id="description" placeholder="Masukkan deskripsi produk anda" required>{{ old('description', $product->description) }}</textarea>
                                         @error('description')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -53,7 +55,7 @@
                                             class="form-control @error('price') is-invalid @enderror @if (old('price') && !$errors->has('price')) is-valid @endif"
                                             id="price" placeholder="Masukkan harga produk anda"
                                             oninput="formatCurrency(this)" onkeypress="return isNumberKey(event)"
-                                            value="{{ old('price') }}" required>
+                                            value="{{ old('price', formatIDR($product->price)) }}" required>
                                         @error('price')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -67,7 +69,7 @@
                                             <option hidden disabled selected value>Pilih jenis produk anda</option>
                                             @foreach ($product_types as $item)
                                                 <option value="{{ $item->id }}"
-                                                    {{ old('product_type_id') == $item->id ? 'selected' : '' }}>
+                                                    {{ old('product_type_id', $product->product_type_id) == $item->id ? 'selected' : '' }}>
                                                     {{ $item->name }}</option>
                                             @endforeach
                                         </select>
@@ -77,7 +79,14 @@
                                         <small class="text-muted"><em>Unggah gambar dengan format jpg/jpeg/png dan
                                                 maksimal ukuran gambar 2mb</em></small>
                                         <div class="col-md-12">
-                                            <img id="preview" class="mt-2" width="150" height="150" />
+                                            @if ($product->image)
+                                                <img src="{{ asset('storage/images/products/' . $product->image) }}"
+                                                    class="mt-2" width="150" height="150" />
+                                            @else
+                                                <img id="preview" src="{{ asset('images/default-image.jpg') }}"
+                                                    class="mt-2" width="150" height="150" />
+                                            @endif
+
                                             <div class="input-group my-3">
                                                 <input class="form-control @error('image') is-invalid @enderror"
                                                     type="file" id="imgInp" name="image" accept="image/*">

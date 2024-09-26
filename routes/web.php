@@ -55,6 +55,8 @@ Route::middleware(['userRedirectIfNotAuthenticated', 'activeCheck'])->prefix('/u
     Route::get('/products/create', [App\Http\Controllers\User\ProductController::class, 'create'])->name('user.products.create');
     Route::post('/products/store', [App\Http\Controllers\User\ProductController::class, 'store'])->name('user.products.store');
     Route::delete('/products/destoy/{id}', [App\Http\Controllers\User\ProductController::class, 'destroy'])->name('user.products.destroy');
+    Route::get('/products/edit/{id}', [App\Http\Controllers\User\ProductController::class, 'edit'])->name('user.products.edit');
+    Route::put('/products/update/{id}', [App\Http\Controllers\User\ProductController::class, 'update'])->name('user.products.update');
 
     // Iklan
     Route::get('/advertisements', [App\Http\Controllers\User\AdvertisementController::class, 'index'])->name('user.advertisements');

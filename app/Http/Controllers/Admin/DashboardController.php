@@ -44,7 +44,10 @@ class DashboardController extends Controller
     }
 
     private function countBusiness() {
-        return Business::count();
+        return Business::whereHas('user', function($query) {
+            $query->whereNotNull('verified_by')
+                  ->whereNotNull('email_verified_at');
+        })->count();
     }
 
     private function countProduct() {

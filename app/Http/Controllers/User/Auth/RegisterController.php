@@ -72,12 +72,7 @@ class RegisterController extends Controller
             'business_name.string' => 'Nama usaha harus berupa teks.',
             'business_description.string' => 'Deskripi usaha harus berupa teks.',
             'address.string' => 'Alamat harus berupa teks.',
-
-            // Numeric
-            'phone.numeric' => 'Nomor HP harus berupa angka.',
-            'business_phone.numeric' => 'Nomor HP harus berupa angka.',
-            'zip_code.numeric' => 'Nomor HP harus berupa angka.',
-
+            
             // Min
             'name.min' => 'Nama lengkap harus memiliki setidaknya :min karakter.',
             'business_name.min' => 'Nama usaha harus memiliki setidaknya :min karakter.',
