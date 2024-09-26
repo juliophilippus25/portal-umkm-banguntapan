@@ -18,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'userRedirectIfNotAuthenticated' => \App\Http\Middleware\UserRedirectIfNotAuthenticated::class,
             'adminRedirectIfNotAuthenticated' => \App\Http\Middleware\AdminRedirectIfNotAuthenticated::class,
             'activeCheck' => \App\Http\Middleware\ActiveCheck::class,
+            'checkOwnership' => \App\Http\Middleware\CheckOwnership::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
