@@ -18,7 +18,6 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard('user')->check()) {
             toast('Akses anda ditolak!','error')->timerProgressBar()->autoClose(5000);
-
             return redirect()->route('user.dashboard');
         } elseif (Auth::guard('admin')->check()) {
             toast('Akses anda ditolak!','error')->timerProgressBar()->autoClose(5000);

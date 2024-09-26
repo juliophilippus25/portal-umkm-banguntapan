@@ -89,6 +89,17 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Status akun</div>
+                                        <div class="col-lg-9 col-md-8">
+                                            @if ($business->user->isActive == 0)
+                                                <span class="badge bg-danger">Nonaktif</span>
+                                            @else
+                                                <span class="badge bg-success">Aktif</span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="tab-pane fade show active profile-overview" id="umkm">
@@ -193,7 +204,6 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <!-- Data Penanggung Jawab -->
                                                         <table class="table-borderless w-100 mb-4">
                                                             <tbody>
                                                                 <tr>

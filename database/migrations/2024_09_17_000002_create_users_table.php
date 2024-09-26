@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nik')->unique();
             $table->string('email')->unique();
             $table->string('password')->nullable();
+            $table->boolean('isActive')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('verified_by', 8)->nullable();
             $table->foreign('verified_by')->references('id')->on('admins')->cascadeOnUpdate()->cascadeOnDelete();

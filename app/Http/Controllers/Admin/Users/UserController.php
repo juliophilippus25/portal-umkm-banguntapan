@@ -33,12 +33,13 @@ class UserController extends Controller
         }
 
         // Generate password dari NIK dan phone
-        $nik = $user->nik; // Pastikan kolom NIK sesuai dengan nama kolom di tabel Anda
-        $phone = $user->phone; // Pastikan kolom phone sesuai dengan nama kolom di tabel Anda
+        $nik = $user->nik;
+        $phone = $user->phone;
 
         $user->password = Hash::make($this->generatePassword($nik, $phone));
         $user->email_verified_at = now();
         $user->verified_by = auth('admin')->user()->id;
+        $user->isActive = 1;
         $user->save();
 
         Mail::to($user->email)->send(new VerificationSuccessEmail($user));
@@ -57,5 +58,19 @@ class UserController extends Controller
 
         // Gabungkan keduanya
         return $nikLastFour . $phoneLastFour;
+    }
+
+    public function toggleActive($id)
+    {
+        $user = User::findOrFail($id);
+
+        // Toggle status isActive
+        $user->isActive = !$user->isActive;
+        $user->save();
+
+        $status = $user->isActive ? 'diaktifkan' : 'dinonaktifkan';
+        toast("Akun berhasil $status.", 'success')->timerProgressBar()->autoClose(5000);
+
+        return redirect()->back();
     }
 }

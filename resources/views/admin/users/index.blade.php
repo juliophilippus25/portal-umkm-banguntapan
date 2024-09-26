@@ -42,9 +42,9 @@
                                             {{ Carbon\Carbon::parse($user->business->created_at)->isoFormat('D MMMM Y') }}
                                         </td>
                                         <td>
-                                            @if ($user->email_verified_at == null)
+                                            @if ($user->email_verified_at == null && $user->verified_by == null)
                                                 <span class="badge bg-danger">Belum Diverifikasi</span>
-                                            @elseif ($user->email_verified_at)
+                                            @elseif ($user->email_verified_at && $user->verified_by)
                                                 <span class="badge bg-success">Terverifikasi</span>
                                             @endif
                                         </td>
@@ -234,10 +234,27 @@
                                         <td>:</td>
                                         <td>{{ $user->admin ? $user->admin->name : 'Belum Diverifikasi' }}</td>
                                     </tr>
+                                    <tr>
+                                        <td class="fw-bold">Status Akun</td>
+                                        <td>:</td>
+                                        <td>
+                                            <span
+                                                class="{{ $user->isActive == 1 ? 'badge bg-success' : 'badge bg-danger' }}">
+                                                {{ $user->isActive == 1 ? 'Aktif' : 'Nonaktif' }}
+                                            </span>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="modal-footer">
+                            <form action="{{ route('user.toggleActive', $user->id) }}" method="POST"
+                                id="toggle-active-form">
+                                @csrf
+                                <button type="submit" class="btn {{ $user->isActive ? 'btn-danger' : 'btn-success' }}">
+                                    {{ $user->isActive ? 'Nonaktifkan Akun' : 'Aktifkan Akun' }}
+                                </button>
+                            </form>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         </div>
                     </div>

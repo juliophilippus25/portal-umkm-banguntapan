@@ -23,8 +23,12 @@ Route::middleware('RedirectIfAuthenticated')->group(function () {
 Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(function () {
     Route::post('/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('admin.logout');
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+
+    // Pengguna
     Route::get('/users', [App\Http\Controllers\Admin\Users\UserController::class, 'index'])->name('admin.users');
-    Route::get('/verify/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'verify'])->name('admin.userVerify');
+    Route::get('/users/verify/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'verify'])->name('admin.userVerify');
+    Route::post('/users/toggle-active/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'toggleActive'])->name('user.toggleActive');
+
 
     // UMKM
     Route::get('/business', [App\Http\Controllers\Admin\BusinessController::class, 'index'])->name('admin.business');
@@ -43,7 +47,7 @@ Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(fu
 });
 
 // User
-Route::middleware('userRedirectIfNotAuthenticated')->prefix('/user')->group(function () {
+Route::middleware(['userRedirectIfNotAuthenticated', 'activeCheck'])->prefix('/user')->group(function () {
     Route::post('/logout', [App\Http\Controllers\User\Auth\LoginController::class, 'logout'])->name('user.logout');
     Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('user.dashboard');
 
