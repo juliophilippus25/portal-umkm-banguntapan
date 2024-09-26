@@ -35,11 +35,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $item)
+                                @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->productType->name }}</td>
-                                        <td>-</td>
+                                        <td class="align-middle">
+                                            @if ($product->image)
+                                                <img src="{{ asset('storage/images/products/' . $product->image) }}"
+                                                    width="50" height="50" alt="Profile" class="rounded-circle" />
+                                            @elseif ($product->image === null)
+                                                <img src="{{ asset('images/default-image.jpg') }}" width="50"
+                                                    height="50" alt="Profile" class="rounded-circle" />
+                                            @endif
+                                            &nbsp;{{ $product->name }}
+                                        </td>
+                                        <td class="align-middle">{{ $product->productType->name }}</td>
+                                        <td class="align-middle">
+                                            <a href="#" class="btn btn-warning btn-sm" title="Ubah"><i
+                                                    class="bi bi-pencil"></i></a>
+                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal{{ $product->id }}" title="Hapus">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -48,6 +64,37 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal Hapus -->
+            @foreach ($products as $product)
+                <div class="modal fade" id="deleteModal{{ $product->id }}" tabindex="-1"
+                    aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah Anda yakin ingin menghapus produk <strong>{{ $product->name }}</strong>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <form action="{{ route('user.products.destroy', $product->id) }}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            <!-- End Modal Hapus -->
+
+
 
         </section>
 

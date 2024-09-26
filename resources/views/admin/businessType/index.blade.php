@@ -28,7 +28,6 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Jenis Usaha</th>
-                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,7 +35,6 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>-</td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -7,6 +7,7 @@ use App\Models\Business;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
@@ -14,15 +15,14 @@ class ProductController extends Controller
     public function index(){
         // Mengambil user yang sedang login
         $authUserId = auth('user')->user()->id;
-
         // Mengambil ID dari bisnis
         $businessId = Business::where('user_id', $authUserId)->pluck('id')->first();
-
+        
         // Mengambil produk sesuai dengan businessId
         $products = Product::with(['business', 'productType'])
-            ->where('business_id', $businessId)
-            ->get();
-            
+        ->where('business_id', $businessId)
+        ->get();
+        
         return view('user.products.index', compact('products'));
     }
 
@@ -110,5 +110,23 @@ class ProductController extends Controller
         }
 
         return $prefix . $formattedProductTypeId . $newNumber; // Contoh format: PR010001, PR020001
+    }
+
+    public function destroy($id) {
+        $product = Product::find($id);
+
+        if (!$product) {
+            toast('Produk tidak ditemukan.','error')->timerProgressBar()->autoClose(5000);
+            return redirect()->route('user.products');
+        }
+
+        if ($product->image && Storage::exists('images/products/' . $product->image)) {
+            Storage::delete('images/products/' . $product->image);
+        }
+
+        $product->delete();
+
+        toast('Berhasil menghapus produk.','success')->timerProgressBar()->autoClose(5000);
+        return redirect()->route('user.products');
     }
 }

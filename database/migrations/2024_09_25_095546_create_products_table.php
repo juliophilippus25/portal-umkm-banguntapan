@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->string('id', 8)->primary()->unique();
             $table->string('name');
+            $table->string('description');
+            $table->decimal('price', 10, 0);
             $table->string('business_id', 8);
             $table->foreign('business_id')->references('id')->on('businesses')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('product_type_id')->constrained('product_types')->cascadeOnUpdate()->cascadeOnDelete();

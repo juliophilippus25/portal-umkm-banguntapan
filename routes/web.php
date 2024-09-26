@@ -29,7 +29,6 @@ Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(fu
     Route::get('/users/verify/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'verify'])->name('admin.userVerify');
     Route::post('/users/toggle-active/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'toggleActive'])->name('user.toggleActive');
 
-
     // UMKM
     Route::get('/business', [App\Http\Controllers\Admin\BusinessController::class, 'index'])->name('admin.business');
     Route::get('/business/{id}', [App\Http\Controllers\Admin\BusinessController::class, 'show'])->name('admin.business.show');
@@ -55,6 +54,7 @@ Route::middleware(['userRedirectIfNotAuthenticated', 'activeCheck'])->prefix('/u
     Route::get('/products', [App\Http\Controllers\User\ProductController::class, 'index'])->name('user.products');
     Route::get('/products/create', [App\Http\Controllers\User\ProductController::class, 'create'])->name('user.products.create');
     Route::post('/products/store', [App\Http\Controllers\User\ProductController::class, 'store'])->name('user.products.store');
+    Route::delete('/products/destoy/{id}', [App\Http\Controllers\User\ProductController::class, 'destroy'])->name('user.products.destroy');
 
     // Iklan
     Route::get('/advertisements', [App\Http\Controllers\User\AdvertisementController::class, 'index'])->name('user.advertisements');
