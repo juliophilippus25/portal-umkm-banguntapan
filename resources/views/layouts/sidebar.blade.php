@@ -28,12 +28,21 @@
                 </a>
             </li><!-- End UMKM Nav -->
 
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="bi bi-grid"></i>
-                    <span>Kategori</span>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('admin.products') ? 'active' : '' }}"
+                    href="{{ route('admin.products') }}">
+                    <i class="bi bi-bag"></i>
+                    <span>Produk</span>
                 </a>
-            </li><!-- End Categories Nav --> --}}
+            </li><!-- End Produk Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('admin.advertisements') ? 'active' : '' }}"
+                    href="{{ route('admin.advertisements') }}">
+                    <i class="bi bi-badge-ad"></i>
+                    <span>Iklan</span>
+                </a>
+            </li><!-- End Iklan Nav -->
 
             <li class="nav-item">
                 <a class="nav-link 

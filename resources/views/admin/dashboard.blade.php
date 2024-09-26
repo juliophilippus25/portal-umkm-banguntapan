@@ -30,6 +30,10 @@
                                         </div>
                                         <div class="ps-3">
                                             <h6>{{ $countBusiness }}</h6>
+                                            <a href="{{ route('admin.business') }}">
+                                                <span class="text-primary small pt-1 fw-bold">Lihat detail <i
+                                                        class="bi bi-arrow-right"></i></span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -47,10 +51,14 @@
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-cart"></i>
+                                            <i class="bi bi-bag"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>{{ $countProduct }}</h6>
+                                            <a href="{{ route('admin.products') }}">
+                                                <span class="text-primary small pt-1 fw-bold">Lihat detail <i
+                                                        class="bi bi-arrow-right"></i></span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -72,10 +80,10 @@
                                         </div>
                                         <div class="ps-3">
                                             <h6>{{ $countAd }}</h6>
-                                            {{-- <a href="#">
-                                                <span class="text-danger small pt-1 fw-bold">Lihat detail <i
+                                            <a href="{{ route('admin.advertisements') }}">
+                                                <span class="text-primary small pt-1 fw-bold">Lihat detail <i
                                                         class="bi bi-arrow-right"></i></span>
-                                            </a> --}}
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -83,8 +91,13 @@
                             </div>
                         </div><!-- End Iklan Card -->
 
+                    </div>
+                </div><!-- End Left side columns -->
+
+                <div class="col-lg-12">
+                    <div class="row">
                         {{-- Produk Per Jenis --}}
-                        <div class="col-lg-6">
+                        <div class="col-md-12 col-lg-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Produk Per Jenis</h5>
@@ -133,7 +146,7 @@
                         {{-- End Produk Per Jenis --}}
 
                         {{-- UMKM Per Kalurahan --}}
-                        <div class="col-lg-6">
+                        <div class="col-md-12 col-lg-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">UMKM Per Kalurahan</h5>
@@ -169,11 +182,8 @@
                             </div>
                         </div>
                         {{-- End UMKM Per Kalurahan --}}
-
-
                     </div>
-                </div><!-- End Left side columns -->
-
+                </div>
             </div>
         </section>
 
