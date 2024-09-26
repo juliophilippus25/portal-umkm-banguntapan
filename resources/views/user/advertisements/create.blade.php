@@ -85,13 +85,17 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>Nama Produk</th>
-                                                    <th>Jenis Produk</th>
+                                                    <th class="col-4">Kode Produk</th>
+                                                    <th class="col-4">Nama Produk</th>
+                                                    <th class="col-4">Jenis Produk</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selectedProducts">
                                                 <!-- Produk yang dipilih akan ditambahkan di sini -->
+                                                <tr>
+                                                    <td colspan="3" class="text-center">Tidak ada produk yang dipilih.
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -140,7 +144,13 @@
             const selectedOptions = Array.from(this.selectedOptions);
             const selectedProductsContainer = document.getElementById('selectedProducts');
 
-            selectedProductsContainer.innerHTML = ''; // Clear previous entries
+            selectedProductsContainer.innerHTML = '';
+
+            if (selectedOptions.length === 0) {
+                selectedProductsContainer.innerHTML =
+                    '<tr><td colspan="3" class="text-center">Tidak ada produk yang dipilih.</td></tr>';
+                return;
+            }
 
             selectedOptions.forEach(option => {
                 const productId = option.value;

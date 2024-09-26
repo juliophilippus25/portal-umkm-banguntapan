@@ -84,9 +84,14 @@
                                 <table class="table-borderless w-100 mb-4">
                                     <tbody>
                                         <tr>
-                                            <td class="fw-bold" style="width: 45%">Nama</td>
+                                            <td class="fw-bold" style="width: 45%">Kode Produk</td>
                                             <td>:</td>
-                                            <td style="width: 55%">{{ $product->name }}</td>
+                                            <td style="width: 55%">{{ $product->id }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">Nama</td>
+                                            <td>:</td>
+                                            <td>{{ $product->name }}</td>
                                         </tr>
                                         <tr>
                                             <td class="fw-bold">Deskripsi</td>

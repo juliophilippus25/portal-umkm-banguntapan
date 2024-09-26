@@ -102,7 +102,7 @@
 
                                 </div>
 
-                                <div class="tab-pane fade show active profile-overview" id="umkm">
+                                <div class="tab-pane fade profile-overview" id="umkm">
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">Nama Usaha</div>
@@ -173,7 +173,9 @@
                                         <tbody>
                                             @if ($business->products->isEmpty())
                                                 <tr>
-                                                    <td colspan="2">Tidak ada produk yang tersedia.</td>
+                                                    <td colspan="2" class="text-center">
+                                                        Tidak ada produk yang tersedia.
+                                                    </td>
                                                 </tr>
                                             @else
                                                 @foreach ($business->products as $product)
@@ -230,9 +232,15 @@
                                                         <table class="table-borderless w-100 mb-4">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td class="fw-bold" style="width: 45%">Nama</td>
+                                                                    <td class="fw-bold" style="width: 45%">Kode Produk
+                                                                    </td>
                                                                     <td>:</td>
-                                                                    <td style="width: 55%">{{ $product->name }}</td>
+                                                                    <td style="width: 55%">{{ $product->id }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Nama</td>
+                                                                    <td>:</td>
+                                                                    <td>{{ $product->name }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="fw-bold">Deskripsi</td>
@@ -276,7 +284,8 @@
                                         <tbody>
                                             @if ($business->advertisements->isEmpty())
                                                 <tr>
-                                                    <td colspan="2">Tidak ada iklan yang tersedia.</td>
+                                                    <td colspan="2" class="text-center">Tidak ada iklan yang tersedia.
+                                                    </td>
                                                 </tr>
                                             @else
                                                 @foreach ($business->advertisements as $advertisement)
