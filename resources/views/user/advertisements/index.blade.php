@@ -30,7 +30,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col" class="col-3">Nama Iklan</th>
-                                    <th scope="col" class="col-5">Durasi Iklan</th>
+                                    <th scope="col" class="col-5">Periode Iklan</th>
                                     <th scope="col" class="col-2">Status</th>
                                     <th scope="col" class="col-2">Aksi</th>
                                 </tr>
@@ -59,6 +59,10 @@
                                             </span>
                                         </td>
                                         <td class="align-middle">
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#detailAdsModal{{ $advertisement->id }}" title="Detail">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
                                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal{{ $advertisement->id }}" title="Hapus">
                                                 <i class="bi bi-trash"></i>
@@ -72,6 +76,89 @@
                     </div>
                 </div>
             </div>
+
+            {{-- Show Modal --}}
+            @foreach ($advertisements as $advertisement)
+                <div class="modal fade" id="detailAdsModal{{ $advertisement->id }}" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Detail Iklan
+                                    {{ $advertisement->name }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-center mb-3">
+                                    @if ($advertisement->image)
+                                        <img src="{{ asset('storage/images/advertisements/' . $advertisement->image) }}"
+                                            width="150" height="150" alt="Profile" class="rounded-circle" />
+                                    @else
+                                        <img src="{{ asset('images/default-image.jpg') }}" width="150" height="150"
+                                            alt="Profile" class="rounded-circle" />
+                                    @endif
+                                </div>
+                                <table class="table-borderless w-100 mb-4">
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-bold" style="width: 45%">Kode Iklan</td>
+                                            <td>:</td>
+                                            <td style="width: 55%">{{ $advertisement->id }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">Nama Iklan</td>
+                                            <td>:</td>
+                                            <td>{{ $advertisement->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">Periode Iklan</td>
+                                            <td>:</td>
+                                            <td>
+                                                {{ Carbon\Carbon::parse($advertisement->ad_start)->isoFormat('D MMMM Y') }}
+                                                -
+                                                {{ Carbon\Carbon::parse($advertisement->ad_end)->isoFormat('D MMMM Y') }}
+                                            </td>
+                                        </tr>
+                                        {{-- Menampilkan data AdvertisementProduct --}}
+                                        <tr>
+                                            <td class="fw-bold">Produk yang Diiklankan</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($advertisement->advertisementProducts->isEmpty())
+                                                    <span>Tidak ada produk yang diiklankan.</span>
+                                                @else
+                                                    <span>
+                                                        @foreach ($advertisement->advertisementProducts as $index => $adProduct)
+                                                            {{ $adProduct->product ? $adProduct->product->name : 'Produk tidak ditemukan' }}
+                                                            @if (!$loop->last)
+                                                                ,
+                                                            @endif
+                                                        @endforeach
+                                                    </span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">Status</td>
+                                            <td>:</td>
+                                            <td>
+                                                <span
+                                                    class="{{ $advertisement->isExpired ? 'badge bg-danger' : 'badge bg-success' }}">
+                                                    {{ $advertisement->isExpired ? 'Kadaluarsa' : 'Aktif' }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            {{-- End Show Modal --}}
 
             <!-- Modal Hapus -->
             @foreach ($advertisements as $advertisement)

@@ -290,8 +290,19 @@
                                             @else
                                                 @foreach ($business->advertisements as $advertisement)
                                                     <tr>
-                                                        <td>{{ $advertisement->name }}</td>
-                                                        <td>
+                                                        <td class="align-middle">
+                                                            @if ($advertisement->image)
+                                                                <img src="{{ asset('storage/images/advertisements/' . $advertisement->image) }}"
+                                                                    width="50" height="50" alt="Profile"
+                                                                    class="rounded-circle" />
+                                                            @elseif ($advertisement->image === null)
+                                                                <img src="{{ asset('images/default-image.jpg') }}"
+                                                                    width="50" height="50" alt="Profile"
+                                                                    class="rounded-circle" />
+                                                            @endif
+                                                            &nbsp;{{ $advertisement->name }}
+                                                        </td>
+                                                        <td class="align-middle">
                                                             <button type="button" class="btn btn-primary btn-sm"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#detailAdsModal{{ $advertisement->id }}">
@@ -317,26 +328,36 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
+                                                        <div class="d-flex justify-content-center mb-3">
+                                                            @if ($advertisement->image)
+                                                                <img src="{{ asset('storage/images/advertisements/' . $advertisement->image) }}"
+                                                                    width="150" height="150" alt="Profile"
+                                                                    class="rounded-circle" />
+                                                            @else
+                                                                <img src="{{ asset('images/default-image.jpg') }}"
+                                                                    width="150" height="150" alt="Profile"
+                                                                    class="rounded-circle" />
+                                                            @endif
+                                                        </div>
                                                         <table class="table-borderless w-100 mb-4">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td class="fw-bold" style="width: 45%">Nama Iklan</td>
+                                                                    <td class="fw-bold" style="width: 45%">Kode Iklan</td>
                                                                     <td>:</td>
-                                                                    <td style="width: 55%">{{ $advertisement->name }}</td>
+                                                                    <td style="width: 55%">{{ $advertisement->id }}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="fw-bold">Tanggal Iklan</td>
+                                                                    <td class="fw-bold">Nama Iklan</td>
+                                                                    <td>:</td>
+                                                                    <td>{{ $advertisement->name }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Periode Iklan</td>
                                                                     <td>:</td>
                                                                     <td>
                                                                         {{ Carbon\Carbon::parse($advertisement->ad_start)->isoFormat('D MMMM Y') }}
                                                                         -
                                                                         {{ Carbon\Carbon::parse($advertisement->ad_end)->isoFormat('D MMMM Y') }}
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="fw-bold">Gambar</td>
-                                                                    <td>:</td>
-                                                                    <td>{{ $advertisement->image ? $advertisement->image : 'Belum ada' }}
                                                                     </td>
                                                                 </tr>
                                                                 {{-- Menampilkan data AdvertisementProduct --}}
@@ -356,6 +377,16 @@
                                                                                 @endforeach
                                                                             </span>
                                                                         @endif
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Status</td>
+                                                                    <td>:</td>
+                                                                    <td>
+                                                                        <span
+                                                                            class="{{ $advertisement->isExpired ? 'badge bg-danger' : 'badge bg-success' }}">
+                                                                            {{ $advertisement->isExpired ? 'Kadaluarsa' : 'Aktif' }}
+                                                                        </span>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
