@@ -124,7 +124,7 @@ class RegisterController extends Controller
             'business_name' => $business['business_name']
         ];
 
-        Mail::to('admin@umkmbanguntapan.com')->send(new VerificationEmail($details));
+        // Mail::to('admin@umkmbanguntapan.com')->send(new VerificationEmail($details));
         
         toast('Berhasil mendaftar. Silakan menunggu verifikasi melalui email anda.','success')->hideCloseButton()->autoClose(5000);
         return redirect()->route('user.showRegister');

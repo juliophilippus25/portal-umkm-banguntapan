@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Models\Product;
 use App\Models\Business;
-use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 
 use App\Models\Advertisement;
@@ -59,7 +58,7 @@ class AdvertisementController extends Controller
         // Aturan
         [
             'name' => 'required|string|min:3|',
-            'description' => 'string|min:3',
+            'description' => 'nullable|string|min:3',
             'product_id' => 'required|array',
             'product_id.*' => 'exists:products,id',
             'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',
@@ -73,6 +72,9 @@ class AdvertisementController extends Controller
             'product_id.required' => 'Produk harus dipilih.',
             'ad_start.required' => 'Tanggal mulai iklan harus diisi.',
             'ad_end.required' => 'Tanggal berakhir iklan harus diisi.',
+
+            // String
+            'description.string' => 'Deskripi iklan harus berupa teks.',
 
             // Mimes
             'image.mimes' => 'Gambar harus berupa file dengan format: jpg, jpeg, png.',

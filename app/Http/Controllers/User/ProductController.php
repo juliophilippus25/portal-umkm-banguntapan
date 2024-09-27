@@ -155,6 +155,9 @@ class ProductController extends Controller
             'name.min' => 'Nama produk harus memiliki setidaknya :min karakter.',
             'description.min' => 'Deskripsi produk harus memiliki setidaknya :min karakter.',
 
+            // String
+            'description.string' => 'Deskripi iklan harus berupa teks.',
+
             // Exists
             'product_type_id.exists' => 'Kategori Produk yang dipilih tidak valid.',
             

@@ -95,6 +95,13 @@
                                             <td>{{ $advertisement->name }}</td>
                                         </tr>
                                         <tr>
+                                            <td class="fw-bold">Deskripsi Iklan</td>
+                                            <td>:</td>
+                                            <td>
+                                                {{ $advertisement->description ? $advertisement->description : 'Tidak ada deskripsi iklan.' }}
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td class="fw-bold">Periode Iklan</td>
                                             <td>:</td>
                                             <td>
