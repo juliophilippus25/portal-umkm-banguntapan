@@ -69,11 +69,12 @@
                                             class="form-select @error('product_id') is-invalid @enderror @if (old('product_id') && !$errors->has('product_id')) is-valid @endif"
                                             name="product_id[]" id="product_id">
                                             <option hidden disabled selected value>Pilih produk anda</option>
-                                            @foreach ($products as $item)
-                                                <option value="{{ $item->id }}"
-                                                    data-type="{{ $item->productType->name }}"
-                                                    {{ is_array(old('product_id')) && in_array($item->id, old('product_id')) ? 'selected' : '' }}>
-                                                    {{ $item->name }}</option>
+                                            @foreach ($products as $product)
+                                                <option value="{{ $product->id }}"
+                                                    data-type="{{ $product->productType->name }}"
+                                                    data-price="{{ $product->price }}"
+                                                    {{ is_array(old('product_id')) && in_array($product->id, old('product_id')) ? 'selected' : '' }}>
+                                                    {{ $product->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('product_id')
@@ -85,15 +86,16 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th class="col-4">Kode Produk</th>
-                                                    <th class="col-4">Nama Produk</th>
-                                                    <th class="col-4">Jenis Produk</th>
+                                                    <th class="col-3">Kode Produk</th>
+                                                    <th class="col-3">Nama</th>
+                                                    <th class="col-3">Harga</th>
+                                                    <th class="col-3">Jenis Produk</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selectedProducts">
                                                 <!-- Produk yang dipilih akan ditambahkan di sini -->
                                                 <tr>
-                                                    <td colspan="3" class="text-center">Tidak ada produk yang dipilih.
+                                                    <td colspan="4" class="text-center">Tidak ada produk yang dipilih.
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -139,6 +141,9 @@
         }
     </script>
     <script>
+        function formatIDR(amount) {
+            return 'Rp ' + Number(amount).toLocaleString('id-ID');
+        }
         // Update tabel saat produk dipilih
         document.getElementById('product_id').addEventListener('change', function() {
             const selectedOptions = Array.from(this.selectedOptions);
@@ -155,11 +160,14 @@
             selectedOptions.forEach(option => {
                 const productId = option.value;
                 const productName = option.text;
+                const productPrice = option.getAttribute(
+                    'data-price'); // Ambil harga produk dari data attribute
                 const productTypeName = option.getAttribute(
                     'data-type'); // Ambil jenis produk dari data attribute
 
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${productId}</td><td>${productName}</td><td>${productTypeName}</td>`;
+                row.innerHTML =
+                    `<td>${productId}</td><td>${productName}</td><td>${formatIDR(productPrice)}</td><td>${productTypeName}</td>`;
                 selectedProductsContainer.appendChild(row);
             });
         });

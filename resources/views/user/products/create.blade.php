@@ -124,7 +124,7 @@
             let value = input.value.replace(/[^0-9]/g, '');
 
             // Format dengan titik
-            value = parseInt(value).toLocaleString();
+            value = parseInt(value).toLocaleString('id-ID');
 
             // Tambahkan prefix "Rp "
             input.value = value ? 'Rp ' + value : '';
