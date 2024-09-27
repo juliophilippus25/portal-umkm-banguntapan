@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'email.required' => 'Email harus diisi.',
             'business_name.required' => 'Nama usaha harus diisi.',
             'business_description.required' => 'Deskripsi usaha harus diisi.',
-            'business_type_id.required' => 'Jenis usaha harus dipilih.',
+            'business_type_id.required' => 'Kategori Usaha harus dipilih.',
             'business_phone.required' => 'Nomor HP usaha harus diisi.',
             'sub_district_id.required' => 'Kalurahan harus dipilih.',
             'address.required' => 'Alamat harus diisi.',

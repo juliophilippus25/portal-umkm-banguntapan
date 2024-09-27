@@ -27,7 +27,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Nama Produk</th>
-                                    <th scope="col">Oleh UMKM</th>
+                                    <th scope="col">UMKM</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -104,7 +104,7 @@
                                             <td>{{ formatIDR($product->price) }}</td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-bold">Jenis Produk</td>
+                                            <td class="fw-bold">Kategori Produk</td>
                                             <td>:</td>
                                             <td>{{ $product->productType->name }}</td>
                                         </tr>

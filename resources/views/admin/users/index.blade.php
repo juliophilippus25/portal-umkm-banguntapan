@@ -27,7 +27,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col-3">Nama Pemilik</th>
-                                    <th scope="col-3">Nama UMKM</th>
+                                    <th scope="col-3">UMKM</th>
                                     <th scope="col=2">Tanggal Daftar</th>
                                     <th scope="col-2">Status</th>
                                     <th scope="col-2">Aksi</th>
@@ -133,7 +133,7 @@
                                         <td>{{ $user->business->business_description }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="fw-bold">Jenis Usaha</td>
+                                        <td class="fw-bold">Kategori Usaha</td>
                                         <td>:</td>
                                         <td>{{ $user->business->businessType->name }}</td>
                                     </tr>

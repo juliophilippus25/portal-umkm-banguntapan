@@ -57,10 +57,10 @@ class ProductController extends Controller
             'name.required' => 'Nama produk harus diisi.',
             'description.required' => 'Description produk harus diisi.',
             'price.required' => 'Harga produk harus diisi.',
-            'product_type_id.required' => 'Jenis produk harus dipilih.',
+            'product_type_id.required' => 'Kategori Produk harus dipilih.',
 
             // Exists
-            'product_type_id.exists' => 'Jenis produk yang dipilih tidak valid.',
+            'product_type_id.exists' => 'Kategori Produk yang dipilih tidak valid.',
             
             // Mimes
             'image.mimes' => 'Gambar harus berupa file dengan format: jpg, jpeg, png.',
@@ -106,7 +106,7 @@ class ProductController extends Controller
     private function generateUniqueProductId($productTypeId){
         $prefix = 'PR';
 
-        // Format ID jenis produk menjadi 2 digit
+        // Format ID Kategori Produk menjadi 2 digit
         $formattedProductTypeId = str_pad($productTypeId, 2, '0', STR_PAD_LEFT);
 
         // Ambil produk terakhir untuk menghasilkan nomor unik
@@ -149,10 +149,14 @@ class ProductController extends Controller
             'name.required' => 'Nama produk harus diisi.',
             'description.required' => 'Description produk harus diisi.',
             'price.required' => 'Harga produk harus diisi.',
-            'product_type_id.required' => 'Jenis produk harus dipilih.',
+            'product_type_id.required' => 'Kategori Produk harus dipilih.',
+
+            // Min
+            'name.min' => 'Nama produk harus memiliki setidaknya :min karakter.',
+            'description.min' => 'Deskripsi produk harus memiliki setidaknya :min karakter.',
 
             // Exists
-            'product_type_id.exists' => 'Jenis produk yang dipilih tidak valid.',
+            'product_type_id.exists' => 'Kategori Produk yang dipilih tidak valid.',
             
             // Mimes
             'image.mimes' => 'Gambar harus berupa file dengan format: jpg, jpeg, png.',

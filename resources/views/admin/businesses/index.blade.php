@@ -27,9 +27,9 @@
                             <thead>
 
                                 <tr>
-                                    <th scope="col">Nama UMKM</th>
+                                    <th scope="col">UMKM</th>
                                     <th scope="col">Tanggal Bergabung</th>
-                                    <th scope="col">Jenis Usaha</th>
+                                    <th scope="col">Kategori Usaha</th>
                                     <th scope="col">Bertempat</th>
                                     <th scope="col">Aksi</th>
                                 </tr>

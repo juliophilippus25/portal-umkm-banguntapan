@@ -36,6 +36,12 @@ class ProductTypesTableSeeder extends Seeder
               'name'  			=> 'Kerajinan',
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
+            ],
+            [
+              'id'  			=> 5,
+              'name'  			=> 'Lainnya',
+              'created_at'      => \Carbon\Carbon::now(),
+              'updated_at'      => \Carbon\Carbon::now()
             ]
         ]);
     }

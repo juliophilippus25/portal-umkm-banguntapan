@@ -27,7 +27,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Nama Iklan</th>
-                                    <th scope="col">Oleh UMKM</th>
+                                    <th scope="col">UMKM</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>

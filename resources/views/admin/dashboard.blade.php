@@ -112,7 +112,7 @@
                                             echarts.init(document.querySelector("#pieChart")).setOption({
                                                 title: {
                                                     text: 'Jumlah Produk Per Kategori',
-                                                    subtext: 'Data berdasarkan jenis produk',
+                                                    subtext: 'Data berdasarkan Kategori Produk',
                                                     left: 'center'
                                                 },
                                                 tooltip: {

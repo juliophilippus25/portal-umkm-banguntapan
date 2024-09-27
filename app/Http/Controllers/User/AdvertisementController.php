@@ -58,12 +58,13 @@ class AdvertisementController extends Controller
         $validator = Validator::make($request->all(), 
         // Aturan
         [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|',
+            'description' => 'string|min:3',
             'product_id' => 'required|array',
-            'product_id.*' => 'exists:products,id', // Validasi setiap id produk
+            'product_id.*' => 'exists:products,id',
             'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',
-            'ad_start' => 'required|date|after_or_equal:' . now()->format('Y-m-d'), // Validasi untuk ad_start
-            'ad_end' => 'required|date|after:ad_start', // Validasi untuk ad_end
+            'ad_start' => 'required|date|after_or_equal:' . now()->format('Y-m-d'),
+            'ad_end' => 'required|date|after:ad_start',
         ], 
         // Pesan
         [
@@ -78,6 +79,10 @@ class AdvertisementController extends Controller
 
             // Max
             'image.max' => 'Ukuran file gambar tidak boleh lebih dari 2MB.',
+
+            // Min
+            'name.min' => 'Nama iklan harus memiliki setidaknya :min karakter.',
+            'description.min' => 'Deskripsi iklan harus memiliki setidaknya :min karakter.',
 
             // Date
             'ad_start.date' => 'Tanggal mulai iklan harus berupa tanggal yang valid.',
@@ -106,6 +111,7 @@ class AdvertisementController extends Controller
         $advertisement = Advertisement::create([
             'id' => $advertisementId,
             'name' => $request->name,
+            'description' => $request->description,
             'ad_start' => $request->ad_start,
             'ad_end' => $request->ad_end,
             'business_id' => $businessId,

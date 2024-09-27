@@ -59,12 +59,12 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
-                                        <label for="product_type_id" class="form-label">Jenis Produk <span
+                                        <label for="product_type_id" class="form-label">Kategori Produk <span
                                                 class="text-danger">*</span></label>
                                         <select
                                             class="form-select @error('product_type_id') is-invalid @enderror @if (old('product_type_id') && !$errors->has('product_type_id')) is-valid @endif"
                                             name="product_type_id" id="product_type_id">
-                                            <option hidden disabled selected value>Pilih jenis produk anda</option>
+                                            <option hidden disabled selected value>Pilih Kategori Produk anda</option>
                                             @foreach ($product_types as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ old('product_type_id') == $item->id ? 'selected' : '' }}>

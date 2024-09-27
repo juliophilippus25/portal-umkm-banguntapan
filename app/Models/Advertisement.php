@@ -17,6 +17,7 @@ class Advertisement extends Model
     protected $fillable = [
         'id',
         'name',
+        'description',
         'ad_start',
         'ad_end',
         'business_id',

@@ -227,7 +227,7 @@
                                                 <td><b>{{ $details['email'] }}</b></td>
                                             </tr>
                                             <tr>
-                                                <td><b>Nama UMKM</b></td>
+                                                <td><b>UMKM</b></td>
                                                 <td><b>:</b></td>
                                                 <td><b>{{ $details['business_name'] }}</b></td>
                                             </tr>

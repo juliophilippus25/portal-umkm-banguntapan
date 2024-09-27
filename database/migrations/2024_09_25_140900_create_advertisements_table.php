@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('advertisements', function (Blueprint $table) {
             $table->string('id', 8)->primary()->unique();
             $table->string('name');
+            $table->string('description')->nullable();
             $table->date('ad_start');
             $table->date('ad_end');
             $table->string('business_id', 8);

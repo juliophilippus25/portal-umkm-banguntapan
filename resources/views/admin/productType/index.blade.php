@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Jenis Produk')
+@section('title', 'Kategori Produk')
 
 @section('main')
     <main id="main" class="main">
@@ -9,7 +9,7 @@
             {{-- <h1>Manajemen Pengguna</h1> --}}
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Jenis Produk</li>
+                    <li class="breadcrumb-item active">Kategori Produk</li>
 
                 </ol>
             </nav>
@@ -20,14 +20,14 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Manajemen Jenis Produk</h5>
+                        <h5 class="card-title">Manajemen Kategori Produk</h5>
 
                         <!-- Default Table -->
                         <table id="myTable" class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Jenis Produk</th>
+                                    <th scope="col">Kategori Produk</th>
                                 </tr>
                             </thead>
                             <tbody>

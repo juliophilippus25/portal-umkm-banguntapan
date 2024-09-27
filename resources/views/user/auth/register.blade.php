@@ -135,12 +135,12 @@
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
-                                                <label for="business_type_id" class="form-label">Jenis Usaha <span
+                                                <label for="business_type_id" class="form-label">Kategori Usaha <span
                                                         class="text-danger">*</span></label>
                                                 <select
                                                     class="form-select @error('business_type_id') is-invalid @enderror @if (old('business_type_id') && !$errors->has('business_type_id')) is-valid @endif"
                                                     name="business_type_id" id="business_type_id">
-                                                    <option hidden disabled selected value>Pilih jenis usaha anda
+                                                    <option hidden disabled selected value>Pilih Kategori Usaha anda
                                                     </option>
                                                     @foreach ($business_types as $item)
                                                         <option value="{{ $item->id }}"

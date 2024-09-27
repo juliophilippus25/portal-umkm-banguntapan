@@ -38,6 +38,15 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                                        <label for="description" class="form-label">Deskripsi Iklan</label>
+                                        <textarea name="description" cols="30" rows="3"
+                                            class="form-control @error('description') is-invalid @enderror @if (old('description') && !$errors->has('description')) is-valid @endif"
+                                            id="description" placeholder="Masukkan deskripsi iklan anda">{{ old('description') }}</textarea>
+                                        @error('description')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                         <label for="ad_start" class="form-label">Tanggal Mulai Iklan <span
                                                 class="text-danger">*</span></label>
                                         <input type="date" name="ad_start"
@@ -89,7 +98,7 @@
                                                     <th class="col-3">Kode Produk</th>
                                                     <th class="col-3">Nama</th>
                                                     <th class="col-3">Harga</th>
-                                                    <th class="col-3">Jenis Produk</th>
+                                                    <th class="col-3">Kategori Produk</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selectedProducts">
@@ -163,7 +172,7 @@
                 const productPrice = option.getAttribute(
                     'data-price'); // Ambil harga produk dari data attribute
                 const productTypeName = option.getAttribute(
-                    'data-type'); // Ambil jenis produk dari data attribute
+                    'data-type'); // Ambil Kategori Produk dari data attribute
 
                 const row = document.createElement('tr');
                 row.innerHTML =

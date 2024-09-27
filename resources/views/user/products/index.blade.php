@@ -111,7 +111,7 @@
                                             <td>{{ formatIDR($product->price) }}</td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-bold">Jenis Produk</td>
+                                            <td class="fw-bold">Kategori Produk</td>
                                             <td>:</td>
                                             <td>{{ $product->productType->name }}</td>
                                         </tr>

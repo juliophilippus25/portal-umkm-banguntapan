@@ -115,7 +115,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Jenis Usaha</div>
+                                        <div class="col-lg-3 col-md-4 label">Kategori Usaha</div>
                                         <div class="col-lg-9 col-md-8">{{ $business->businessType->name }}</div>
                                     </div>
 
@@ -253,7 +253,7 @@
                                                                     <td>{{ formatIDR($product->price) }}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="fw-bold">Jenis Produk</td>
+                                                                    <td class="fw-bold">Kategori Produk</td>
                                                                     <td>:</td>
                                                                     <td>{{ $product->productType->name }}</td>
                                                                 </tr>
@@ -322,7 +322,8 @@
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Detail Iklan
+                                                        <h5 class="modal-title">Detail Iklan {{ $advertisement->name }}
+                                                            dari
                                                             {{ $business->business_name }}</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
