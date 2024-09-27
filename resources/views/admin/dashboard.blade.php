@@ -96,11 +96,11 @@
 
                 <div class="col-lg-12">
                     <div class="row">
-                        {{-- Produk Per Jenis --}}
+                        {{-- Produk Per Kategori --}}
                         <div class="col-md-12 col-lg-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Produk Per Jenis</h5>
+                                    <h5 class="card-title">Produk Per Kategori</h5>
 
                                     <!-- Pie Chart -->
                                     <div id="pieChart" style="min-height: 400px;" class="echart"></div>
@@ -111,7 +111,7 @@
 
                                             echarts.init(document.querySelector("#pieChart")).setOption({
                                                 title: {
-                                                    text: 'Jumlah Produk Per Jenis',
+                                                    text: 'Jumlah Produk Per Kategori',
                                                     subtext: 'Data berdasarkan jenis produk',
                                                     left: 'center'
                                                 },
@@ -143,7 +143,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- End Produk Per Jenis --}}
+                        {{-- End Produk Per Kategori --}}
 
                         {{-- UMKM Per Kalurahan --}}
                         <div class="col-md-12 col-lg-6">

@@ -10,11 +10,13 @@ use Illuminate\Http\Request;
 use App\Models\Advertisement;
 use App\Http\Controllers\Controller;
 use App\Models\AdvertisementProduct;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class AdvertisementController extends Controller
 {
     public function index(){
+        $now = now();
         // Mengambil user yang sedang login
         $authUserId = auth('user')->user()->id;
 
@@ -26,7 +28,7 @@ class AdvertisementController extends Controller
             ->where('business_id', $businessId)
             ->get();
             
-        return view('user.advertisements.index', compact('advertisements'));
+        return view('user.advertisements.index', compact('advertisements', 'now'));
     }
 
     public function create(){
@@ -94,7 +96,7 @@ class AdvertisementController extends Controller
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $extension = $request->image->getClientOriginalExtension();
             $fileName = time() . '.' . $extension;
-            $image = $request->file('image')->storeAs('images/products', $fileName);
+            $image = $request->file('image')->storeAs('images/advertisements', $fileName);
             $image = $fileName;
         } else {
             $image = NULL;
@@ -139,5 +141,23 @@ class AdvertisementController extends Controller
         }
 
         return $prefix . $newNumber; // Mengembalikan ID baru
+    }
+
+    public function destroy($id) {
+        $advertisement = Advertisement::find($id);
+
+        if (!$advertisement) {
+            toast('Produk tidak ditemukan.','error')->timerProgressBar()->autoClose(5000);
+            return redirect()->route('user.advertisements');
+        }
+
+        if ($advertisement->image && Storage::exists('images/advertisements/' . $advertisement->image)) {
+            Storage::delete('images/advertisements/' . $advertisement->image);
+        }
+
+        $advertisement->delete();
+
+        toast('Berhasil menghapus iklan.','success')->timerProgressBar()->autoClose(5000);
+        return redirect()->route('user.advertisements');
     }
 }

@@ -62,4 +62,6 @@ Route::middleware(['userRedirectIfNotAuthenticated', 'activeCheck'])->prefix('/u
     Route::get('/advertisements', [App\Http\Controllers\User\AdvertisementController::class, 'index'])->name('user.advertisements');
     Route::get('/advertisements/create', [App\Http\Controllers\User\AdvertisementController::class, 'create'])->name('user.advertisements.create');
     Route::post('/advertisements/store', [App\Http\Controllers\User\AdvertisementController::class, 'store'])->name('user.advertisements.store');
+    Route::delete('/advertisements/destoy/{id}', [App\Http\Controllers\User\AdvertisementController::class, 'destroy'])->name('user.advertisements.destroy')->middleware('checkOwnership:advertisement');
+
 });

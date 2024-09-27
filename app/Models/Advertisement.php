@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Advertisement extends Model
 {
@@ -35,5 +36,10 @@ class Advertisement extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'advertisement_products', 'advertisement_id', 'product_id');
+    }
+
+    public function getIsExpiredAttribute()
+    {
+        return Carbon::today()->greaterThan($this->ad_end);
     }
 }
