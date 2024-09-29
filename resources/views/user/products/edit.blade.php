@@ -66,7 +66,7 @@
                                         <select
                                             class="form-select @error('product_type_id') is-invalid @enderror @if (old('product_type_id') && !$errors->has('product_type_id')) is-valid @endif"
                                             name="product_type_id" id="product_type_id">
-                                            <option hidden disabled selected value>Pilih Kategori Produk anda</option>
+                                            <option hidden disabled selected value>Pilih kategori produk anda</option>
                                             @foreach ($product_types as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ old('product_type_id', $product->product_type_id) == $item->id ? 'selected' : '' }}>

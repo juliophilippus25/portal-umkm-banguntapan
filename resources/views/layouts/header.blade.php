@@ -67,8 +67,20 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="{{ asset('NiceAdmin/assets/img/profile-img.jpg') }}" alt="Profile"
-                        class="rounded-circle">
+                    @auth('admin')
+                        @php
+                            $avatar = Auth::guard('admin')->user()->avatar;
+                        @endphp
+                        <img src="{{ $avatar ? asset('storage/images/users/' . $avatar) : asset('images/default-image.jpg') }}"
+                            alt="Profile" class="rounded-circle" />
+                        @elseauth('user')
+                        @php
+                            $avatar = Auth::guard('user')->user()->avatar;
+                        @endphp
+                        <img src="{{ $avatar ? asset('storage/images/users/' . $avatar) : asset('images/default-image.jpg') }}"
+                            alt="Profile" class="rounded-circle" />
+                    @endauth
+
                     <span class="d-none d-md-block dropdown-toggle ps-2">
                         @auth('admin')
                             {{ Auth::guard('admin')->user()->name }}
@@ -108,7 +120,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('user.profile.business') }}">
                                 <i class="bi bi-shop"></i>
                                 <span>Profil UMKM</span>
                             </a>

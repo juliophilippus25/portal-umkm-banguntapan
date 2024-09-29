@@ -39,7 +39,6 @@ Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(fu
     // Iklan
     Route::get('/advertisements', [App\Http\Controllers\Admin\AdvertisementController::class, 'index'])->name('admin.advertisements');
 
-
     Route::get('/btypes', [App\Http\Controllers\Admin\BusinessTypeController::class, 'index'])->name('admin.bTypes');
     Route::get('/ptypes', [App\Http\Controllers\Admin\ProductTypeController::class, 'index'])->name('admin.pTypes');
     Route::get('/sdistricts', [App\Http\Controllers\Admin\SubDistricController::class, 'index'])->name('admin.subDistrict');
@@ -51,6 +50,8 @@ Route::middleware(['userRedirectIfNotAuthenticated', 'activeCheck'])->prefix('/u
     Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('user.dashboard');
     Route::get('/profil-ku', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('user.profile');
     Route::put('/profil-ku/update/{userId}', [App\Http\Controllers\User\ProfileController::class, 'update'])->name('user.profile.update');
+    Route::get('/profil-umkm', [App\Http\Controllers\User\BusinessController::class, 'index'])->name('user.profile.business');
+    Route::put('/profil-umkm/update/{businessId}', [App\Http\Controllers\User\BusinessController::class, 'update'])->name('user.profile.business.update');
 
     // Produk
     Route::get('/products', [App\Http\Controllers\User\ProductController::class, 'index'])->name('user.products');
@@ -65,5 +66,4 @@ Route::middleware(['userRedirectIfNotAuthenticated', 'activeCheck'])->prefix('/u
     Route::get('/advertisements/create', [App\Http\Controllers\User\AdvertisementController::class, 'create'])->name('user.advertisements.create');
     Route::post('/advertisements/store', [App\Http\Controllers\User\AdvertisementController::class, 'store'])->name('user.advertisements.store');
     Route::delete('/advertisements/destoy/{id}', [App\Http\Controllers\User\AdvertisementController::class, 'destroy'])->name('user.advertisements.destroy')->middleware('checkOwnership:advertisement');
-
 });

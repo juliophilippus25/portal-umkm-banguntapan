@@ -21,12 +21,10 @@
 
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-                            <img src="{{ asset('NiceAdmin/assets/img/profile-img.jpg') }}" alt="Profile"
+                            <img src="{{ asset('storage/images/users/' . $business->user->avatar) }}" alt="Profile"
                                 class="rounded-circle">
                             <h2>{{ $business->user->name }}</h2>
                             <h3>{{ $business->business_name }}</h3>
-
                         </div>
                     </div>
 
@@ -103,6 +101,15 @@
                                 </div>
 
                                 <div class="tab-pane fade profile-overview" id="umkm">
+                                    <div class="profile-card my-3 d-flex flex-column align-items-center">
+                                        @if ($business->avatar)
+                                            <img src="{{ asset('storage/images/businesses/' . $business->avatar) }}"
+                                                alt="Profile" class="rounded-circle" />
+                                        @elseif ($business->image === null)
+                                            <img src="{{ asset('images/default-image.jpg') }}" alt="Profile"
+                                                class="rounded-circle" />
+                                        @endif
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">Nama Usaha</div>
