@@ -25,7 +25,6 @@
                         <!-- Default Table -->
                         <table id="myTable" class="table">
                             <thead>
-
                                 <tr>
                                     <th scope="col">UMKM</th>
                                     <th scope="col">Tanggal Bergabung</th>

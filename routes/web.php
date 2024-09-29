@@ -25,9 +25,9 @@ Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(fu
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
     // Pengguna
-    Route::get('/users', [App\Http\Controllers\Admin\Users\UserController::class, 'index'])->name('admin.users');
-    Route::get('/users/verify/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'verify'])->name('admin.userVerify');
-    Route::post('/users/toggle-active/{id}', [App\Http\Controllers\Admin\Users\UserController::class, 'toggleActive'])->name('user.toggleActive');
+    Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users');
+    Route::get('/users/verify/{id}', [App\Http\Controllers\Admin\UserController::class, 'verify'])->name('admin.userVerify');
+    Route::post('/users/toggle-active/{id}', [App\Http\Controllers\Admin\UserController::class, 'toggleActive'])->name('user.toggleActive');
 
     // UMKM
     Route::get('/business', [App\Http\Controllers\Admin\BusinessController::class, 'index'])->name('admin.business');
@@ -49,6 +49,8 @@ Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(fu
 Route::middleware(['userRedirectIfNotAuthenticated', 'activeCheck'])->prefix('/user')->group(function () {
     Route::post('/logout', [App\Http\Controllers\User\Auth\LoginController::class, 'logout'])->name('user.logout');
     Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('user.dashboard');
+    Route::get('/profil-ku', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('user.profile');
+    Route::put('/profil-ku/update/{userId}', [App\Http\Controllers\User\ProfileController::class, 'update'])->name('user.profile.update');
 
     // Produk
     Route::get('/products', [App\Http\Controllers\User\ProductController::class, 'index'])->name('user.products');

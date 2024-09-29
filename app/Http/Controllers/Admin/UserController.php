@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Users;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -48,7 +48,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    private function generatePassword($nik, $phone){
+    public function generatePassword($nik, $phone){
 
         // Ambil 4 digit terakhir dari NIK
         $nikLastFour = substr($nik, -4);

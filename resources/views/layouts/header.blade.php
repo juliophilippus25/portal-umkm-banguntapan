@@ -91,15 +91,22 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-person"></i>
-                            <span>Profil Ku</span>
-                        </a>
-                    </li>
+                    @auth('admin')
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="bi bi-person"></i>
+                                <span>Profil Ku</span>
+                            </a>
+                        </li>
+                    @endauth
 
                     @auth('user')
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('user.profile') }}">
+                                <i class="bi bi-person"></i>
+                                <span>Profil Ku</span>
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                                 <i class="bi bi-shop"></i>
