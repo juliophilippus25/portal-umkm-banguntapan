@@ -1,33 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
     public function index(){
-        $user = auth('user')->user();
-        return view('user.profile.user.index', compact('user'));
+        $admin = auth('admin')->user();
+        return view('admin.profile.index', compact('admin'));
     }
 
-    public function update(Request $request, $userId)
+    public function update(Request $request, $adminId)
     {
-        $userId = auth('user')->id();;
-        $user = User::findOrFail($userId);
+        $adminId = auth('admin')->id();;
+        $admin = Admin::findOrFail($adminId);
 
         $validator = Validator::make($request->all(), 
         // Aturan
         [
-            // Data Pengguna
-            'name' => 'required|string|min:3|unique:users,name,'.$user->id,
-            'nik' => 'required|digits:16|unique:users,nik,'.$user->id,
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'phone' => 'required|digits_between:10,15|unique:users,phone,'.$user->id,
+            // Data Admin
+            'name' => 'required|string|min:3|unique:admins,name,'.$admin->id,
+            'username' => 'required|string|min:3|unique:admins,username,'.$admin->id,
 
             // Password
             'password' => 'nullable|min:8|confirmed',
@@ -35,7 +33,7 @@ class ProfileController extends Controller
 
             // Avatar
             'avatar' => 'nullable|mimes:jpg,jpeg,png|max:2048',
-            ],
+        ],
         // Pesan
         [
             // Required
@@ -81,26 +79,24 @@ class ProfileController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $user->name = $request->input('name');
-        $user->nik = $request->input('nik');
-        $user->email = $request->input('email');
-        $user->phone = $request->input('phone');
+        $admin->name = $request->input('name');
+        $admin->username = $request->input('username');
         if($request->input('password')) {
-            $user->password= bcrypt(($request->input('password')));
+            $admin->password= bcrypt(($request->input('password')));
         }
 
         // Proses upload avatar
         if($request->file('avatar')) {
-            $oldImage = $user->avatar;
+            $oldImage = $admin->avatar;
             $extension = $request->avatar->getClientOriginalExtension();
             $fileName = time() . '.' .$extension;
-            $image = $request->file('avatar')->storeAs('images/users', $fileName);
-            $user->avatar = $fileName;
+            $image = $request->file('avatar')->storeAs('images/admins', $fileName);
+            $admin->avatar = $fileName;
             if ($oldImage) {
-                Storage::delete('images/users/' . $oldImage);
+                Storage::delete('images/admins/' . $oldImage);
             }
         }
-        $user->update();
+        $admin->update();
 
         toast('Berhasil mengubah profil.','success')->timerProgressBar()->autoClose(5000);
         return redirect()->back();

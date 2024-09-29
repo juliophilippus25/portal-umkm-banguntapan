@@ -71,7 +71,7 @@
                         @php
                             $avatar = Auth::guard('admin')->user()->avatar;
                         @endphp
-                        <img src="{{ $avatar ? asset('storage/images/users/' . $avatar) : asset('images/default-image.jpg') }}"
+                        <img src="{{ $avatar ? asset('storage/images/admins/' . $avatar) : asset('images/default-image.jpg') }}"
                             alt="Profile" class="rounded-circle" />
                         @elseauth('user')
                         @php
@@ -105,7 +105,7 @@
                     </li>
                     @auth('admin')
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.profile') }}">
                                 <i class="bi bi-person"></i>
                                 <span>Profil Ku</span>
                             </a>

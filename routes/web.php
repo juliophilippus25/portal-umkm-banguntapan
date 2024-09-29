@@ -23,6 +23,8 @@ Route::middleware('RedirectIfAuthenticated')->group(function () {
 Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(function () {
     Route::post('/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('admin.logout');
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/profil-ku', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.profile');
+    Route::put('/profil-ku/update/{adminId}', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('admin.profile.update');
 
     // Pengguna
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users');

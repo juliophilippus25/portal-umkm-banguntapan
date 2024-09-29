@@ -20,13 +20,13 @@
 
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                            @if ($user->avatar)
-                                <img src="{{ asset('storage/images/users/' . $user->avatar) }}" alt="Profile"
+                            @if ($admin->avatar)
+                                <img src="{{ asset('storage/images/admins/' . $admin->avatar) }}" alt="Profile"
                                     class="rounded-circle" />
-                            @elseif ($user->avatar === null)
+                            @elseif ($admin->avatar === null)
                                 <img src="{{ asset('images/default-image.jpg') }}" alt="Profile" class="rounded-circle" />
                             @endif
-                            <h2>{{ $user->name }}</h2>
+                            <h2>{{ $admin->name }}</h2>
                         </div>
                     </div>
 
@@ -37,21 +37,21 @@
                     <div class="card">
                         <div class="card-body pt-3">
                             <div class="profile-edit">
-                                <form action="{{ route('user.profile.update', $user->id) }}" method="POST"
+                                <form action="{{ route('admin.profile.update', $admin->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @method('PUT')
                                     @csrf
                                     <div class="row mb-3">
-                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Foto
+                                        <label for="imgInp" class="col-md-4 col-lg-3 col-form-label">Foto
                                             Profil</label>
                                         <div class="col-md-8 col-lg-9">
                                             <div class="mb-2">
                                                 <small class="text-muted"><em>Unggah foto dengan format jpg/jpeg/png dan
                                                         maksimal ukuran foto 2mb</em></small>
                                             </div>
-                                            @if ($user->avatar)
+                                            @if ($admin->avatar)
                                                 <img id="preview"
-                                                    src="{{ asset('storage/images/users/' . $user->avatar) }}"
+                                                    src="{{ asset('storage/images/admins/' . $admin->avatar) }}"
                                                     width="150" height="150" />
                                             @else
                                                 <img id="preview" src="{{ asset('images/default-image.jpg') }}"
@@ -70,12 +70,12 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="name" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
+                                        <label for="name" class="col-md-4 col-lg-3 col-form-label">Nama</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror @if (old('name') && !$errors->has('name')) is-valid @endif"
-                                                id="name" value="{{ old('name', $user->name) }}"
-                                                placeholder="Masukkan nama lengkap anda">
+                                                id="name" value="{{ old('name', $admin->name) }}"
+                                                placeholder="Masukkan nama anda">
                                             @error('name')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
@@ -83,40 +83,13 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="nik" class="col-md-4 col-lg-3 col-form-label">NIK</label>
+                                        <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="nik" type="text"
-                                                class="form-control @error('nik') is-invalid @enderror @if (old('nik') && !$errors->has('nik')) is-valid @endif"
-                                                id="nik" value="{{ old('nik', $user->nik) }}"
-                                                placeholder="Masukkan nama lengkap anda"
-                                                onkeypress="return isNumberKey(event)">
-                                            @error('nik')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="email" type="email"
-                                                class="form-control @error('email') is-invalid @enderror @if (old('email') && !$errors->has('email')) is-valid @endif"
-                                                id="email" value="{{ old('email', $user->email) }}"
-                                                placeholder="Masukkan email anda">
-                                            @error('email')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="phone" class="col-md-4 col-lg-3 col-form-label">Nomor HP</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="phone" type="text"
-                                                class="form-control @error('phone') is-invalid @enderror @if (old('phone') && !$errors->has('phone')) is-valid @endif"
-                                                id="phone" value="{{ old('phone', $user->phone) }}"
-                                                onkeypress="return isNumberKey(event)" placeholder="Masukkan nomor HP anda">
-                                            @error('phone')
+                                            <input name="username" type="text"
+                                                class="form-control @error('username') is-invalid @enderror @if (old('username') && !$errors->has('username')) is-valid @endif"
+                                                id="username" value="{{ old('username', $admin->username) }}"
+                                                placeholder="Masukkan username anda">
+                                            @error('username')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
@@ -148,7 +121,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
@@ -170,14 +142,6 @@
             if (file) {
                 preview.src = URL.createObjectURL(file)
             }
-        }
-
-        function isNumberKey(evt) {
-            var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57))
-                return false;
-
-            return true;
         }
     </script>
 @endsection
