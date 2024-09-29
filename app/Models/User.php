@@ -64,4 +64,23 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Admin::class, 'verified_by');
     }
+
+    public function generatePassword($nik, $phone)
+    {
+        // Ambil 4 digit terakhir dari NIK
+        $nikLastFour = substr($nik, -4);
+
+        // Ambil 4 digit terakhir dari phone
+        $phoneLastFour = substr($phone, -4);
+
+        // Gabungkan keduanya
+        return $nikLastFour . $phoneLastFour;
+    }
+
+    public function getIsDefaultPasswordAttribute()
+    {
+        $defaultPassword = $this->generatePassword($this->nik, $this->phone);
+        
+        return password_verify($defaultPassword, $this->password);
+    }
 }

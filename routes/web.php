@@ -36,7 +36,7 @@ Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(fu
     Route::get('/business/{id}', [App\Http\Controllers\Admin\BusinessController::class, 'show'])->name('admin.business.show');
     
     // Produk
-    Route::get('/products', [App\Http\Controllers\Admin\ProductsController::class, 'index'])->name('admin.products');
+    Route::get('/products', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('admin.products');
 
     // Iklan
     Route::get('/advertisements', [App\Http\Controllers\Admin\AdvertisementController::class, 'index'])->name('admin.advertisements');
