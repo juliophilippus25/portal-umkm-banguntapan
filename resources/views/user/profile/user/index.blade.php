@@ -145,6 +145,13 @@
                                             @error('password_confirmation')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
+                                            <div class="form-check mt-2">
+                                                <input type="checkbox" name="check-password" id="check-password"
+                                                    class="form-check-input" onclick="togglePassword()">
+                                                <label for="check-password"
+                                                    class="form-check-label text-muted"><small>Tampilkan kata
+                                                        sandi</small></label>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -178,6 +185,18 @@
                 return false;
 
             return true;
+        }
+
+        function togglePassword() {
+            var x = document.getElementById("password");
+            var y = document.getElementById("password_confirmation");
+            if (x.type === "password" && y.type === "password") {
+                x.type = "text";
+                y.type = "text";
+            } else {
+                x.type = "password";
+                y.type = "password";
+            }
         }
     </script>
 @endsection

@@ -90,6 +90,14 @@
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="check-password" id="check-password"
+                                                    class="form-check-input" onclick="togglePassword()">
+                                                <label class="form-check-label" for="check-password">Tampilkan kata
+                                                    sandi</label>
+                                            </div>
+                                        </div>
 
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
@@ -122,6 +130,16 @@
     {{-- SweetAlert2 --}}
     @include('sweetalert::alert')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function togglePassword() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>
