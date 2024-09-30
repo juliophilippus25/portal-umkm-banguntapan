@@ -42,7 +42,7 @@ class UserController extends Controller
         $user->isActive = 1;
         $user->save();
 
-        // Mail::to($user->email)->send(new VerificationSuccessEmail($user));
+        Mail::to($user->email)->send(new VerificationSuccessEmail($user));
 
         toast('User berhasil diverifikasi.','success')->timerProgressBar()->autoClose(5000);
         return redirect()->back();
