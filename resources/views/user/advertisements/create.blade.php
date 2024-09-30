@@ -162,7 +162,7 @@
 
             if (selectedOptions.length === 0) {
                 selectedProductsContainer.innerHTML =
-                    '<tr><td colspan="3" class="text-center">Tidak ada produk yang dipilih.</td></tr>';
+                    '<tr><td colspan="4" class="text-center">Tidak ada produk yang dipilih.</td></tr>';
                 return;
             }
 

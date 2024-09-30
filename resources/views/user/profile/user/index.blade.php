@@ -42,7 +42,7 @@
                                     @method('PUT')
                                     @csrf
                                     <div class="row mb-3">
-                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Foto
+                                        <label for="imgInp" class="col-md-4 col-lg-3 col-form-label">Foto
                                             Profil</label>
                                         <div class="col-md-8 col-lg-9">
                                             <div class="mb-2">
