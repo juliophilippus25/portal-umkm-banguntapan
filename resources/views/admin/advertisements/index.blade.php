@@ -135,7 +135,7 @@
                                             <td>
                                                 <span
                                                     class="{{ $advertisement->isExpired ? 'badge bg-danger' : 'badge bg-success' }}">
-                                                    {{ $advertisement->isExpired ? 'Kadaluarsa' : 'Aktif' }}
+                                                    {{ $advertisement->isExpired ? 'Kedaluwarsa' : 'Aktif' }}
                                                 </span>
                                             </td>
                                         </tr>

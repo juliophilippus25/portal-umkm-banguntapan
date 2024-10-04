@@ -150,12 +150,12 @@
             <div class="row g-4"> <!-- Menambahkan row untuk mengatur layout -->
                 @php
                     $activeAdvertisements = $advertisements->filter(function ($advertisement) {
-                        return !$advertisement->isExpired; // Hanya ambil iklan yang tidak kedaluwarsa
+                        return !$advertisement->isExpired; // Hanya ambil iklan yang tidak Kedaluwarsa
                     });
                 @endphp
 
                 @forelse ($activeAdvertisements as $advertisement)
-                    <!-- Hanya mengiterasi iklan yang tidak kedaluwarsa -->
+                    <!-- Hanya mengiterasi iklan yang tidak Kedaluwarsa -->
                     <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <!-- Mengatur kolom menjadi 6 (2 per row) -->
                         <div class="testimonial-item">

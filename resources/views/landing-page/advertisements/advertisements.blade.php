@@ -32,12 +32,12 @@
             <div class="row">
                 @php
                     $activeAdvertisements = $advertisements->filter(function ($advertisement) {
-                        return !$advertisement->isExpired; // Hanya ambil iklan yang tidak kedaluwarsa
+                        return !$advertisement->isExpired; // Hanya ambil iklan yang tidak Kedaluwarsa
                     });
                 @endphp
 
                 @forelse ($activeAdvertisements as $advertisement)
-                    <!-- Hanya mengiterasi iklan yang tidak kedaluwarsa -->
+                    <!-- Hanya mengiterasi iklan yang tidak Kedaluwarsa -->
                     <div class="col-lg-4">
                         <div class="card">
                             @if ($advertisement->image)
