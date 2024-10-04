@@ -22,9 +22,10 @@
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                             @if ($admin->avatar)
                                 <img src="{{ asset('storage/images/admins/' . $admin->avatar) }}" alt="Profile"
-                                    class="rounded-circle" />
+                                    class="rounded-circle" width="130px" height="130px" />
                             @elseif ($admin->avatar === null)
-                                <img src="{{ asset('images/default-image.jpg') }}" alt="Profile" class="rounded-circle" />
+                                <img src="{{ asset('images/default-image.jpg') }}" alt="Profile" class="rounded-circle"
+                                    width="130px" height="130px" />
                             @endif
                             <h2>{{ $admin->name }}</h2>
                         </div>
@@ -52,10 +53,10 @@
                                             @if ($admin->avatar)
                                                 <img id="preview"
                                                     src="{{ asset('storage/images/admins/' . $admin->avatar) }}"
-                                                    width="150" height="150" />
+                                                    width="150px" height="150px" />
                                             @else
                                                 <img id="preview" src="{{ asset('images/default-image.jpg') }}"
-                                                    width="150" height="150" />
+                                                    width="150px" height="150px" />
                                             @endif
                                             <div class="mt-3">
                                                 <div class="input-group">

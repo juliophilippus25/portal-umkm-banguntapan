@@ -32,7 +32,7 @@ class LoginController extends Controller
             'email.email' => 'Format email salah!',
             
             // Min
-            'password.min' => 'Kata sandi harus memiliki setidaknya :min karakter.!',
+            'password.min' => 'Kata sandi harus memiliki setidaknya :min karakter.',
         ]);
 
         if($validator->fails()){

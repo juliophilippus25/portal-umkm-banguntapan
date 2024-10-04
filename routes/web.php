@@ -2,9 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\LandingPageController::class, 'home'])->name('home');
+Route::get('/umkm', [App\Http\Controllers\LandingPageController::class, 'businesses'])->name('businesses');
+Route::get('/umkm/{id}', [App\Http\Controllers\LandingPageController::class, 'detailBusiness'])->name('businesses.detail');
+Route::get('/iklan', [App\Http\Controllers\LandingPageController::class, 'advertisements'])->name('advertisements');
+Route::get('/iklan/{id}', [App\Http\Controllers\LandingPageController::class, 'detailAdvertisement'])->name('advertisements.detail');
+Route::get('/produk', [App\Http\Controllers\LandingPageController::class, 'products'])->name('products');
+Route::get('/produk/{id}', [App\Http\Controllers\LandingPageController::class, 'detailProduct'])->name('products.detail');
+
+
 
 // Route login dan register
 Route::middleware('RedirectIfAuthenticated')->group(function () {

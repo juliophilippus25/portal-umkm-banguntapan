@@ -329,6 +329,90 @@ h6 {
   font-weight: 600;
 }
 
+/* Navbar Custom */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: white;
+  margin: 0;
+  height: 80px;
+  width: 100%; /* Pastikan navbar mengisi lebar penuh */
+  box-sizing: border-box; /* Pastikan padding dan border diperhitungkan dalam lebar total */
+  position: relative; /* Agar dropdown bisa ditempatkan dengan benar */
+  z-index: 1000; /* Pastikan navbar tetap di atas konten lainnya */
+}
+
+.navbar-brand .logo {
+  width: 100px; /* Ganti dengan lebar logo sesuai kebutuhan */
+}
+
+.navbar-collapse {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.nav li {
+  margin-left: 20px;
+}
+
+.nav a {
+  color: #012970;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 15px;
+}
+
+.nav a:hover {
+  color: #4154f1;  
+}
+
+.navbar-toggle {
+  display: none; /* Tersembunyi di desktop */
+  font-size: 24px;
+  color: #012970;
+  cursor: pointer;
+}
+
+/* Media Query untuk Mobile */
+@media (max-width: 768px) {
+  .navbar-collapse {
+    display: none; /* Tersembunyi di mobile */
+    flex-direction: column; /* Menyusun secara vertikal */
+    position: absolute;
+    top: 60px; /* Jarak dari atas */
+    left: 0;
+    right: 0;
+    width: 100%; /* Pastikan dropdown juga full-width */
+    background-color: white; /* Warna background dropdown */
+    z-index: 1000; /* Agar dropdown muncul di atas konten lainnya */
+}
+
+  .navbar-collapse.active {
+      display: flex; /* Tampilkan saat hamburger diklik */
+  }
+
+  .nav {
+      flex-direction: column; /* Susun item secara vertikal */
+  }
+
+  .nav li {
+      margin: 10px 0; /* Margin vertikal di item nav */
+  }
+
+  .navbar-toggle {
+      display: block; /* Tampilkan hamburger di mobile */
+  }
+}
+
 /* Bordered Tabs */
 .nav-tabs-bordered {
   border-bottom: 2px solid #ebeef4;

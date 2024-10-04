@@ -72,13 +72,13 @@
                             $avatar = Auth::guard('admin')->user()->avatar;
                         @endphp
                         <img src="{{ $avatar ? asset('storage/images/admins/' . $avatar) : asset('images/default-image.jpg') }}"
-                            alt="Profile" class="rounded-circle" />
+                            alt="Profile" class="rounded-circle" width="40px" height="40px" />
                         @elseauth('user')
                         @php
                             $avatar = Auth::guard('user')->user()->avatar;
                         @endphp
                         <img src="{{ $avatar ? asset('storage/images/users/' . $avatar) : asset('images/default-image.jpg') }}"
-                            alt="Profile" class="rounded-circle" />
+                            alt="Profile" class="rounded-circle" width="40px" height="40px" />
                     @endauth
 
                     <span class="d-none d-md-block dropdown-toggle ps-2">

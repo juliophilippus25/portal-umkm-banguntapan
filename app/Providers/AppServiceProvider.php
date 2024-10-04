@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Http\View\Composers\HeaderComposer;
+use App\Http\View\Composers\HeaderLandingPageComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('layouts.header', HeaderComposer::class);
+        View::composer('landing-page.layouts.header', HeaderLandingPageComposer::class);
     }
 }
