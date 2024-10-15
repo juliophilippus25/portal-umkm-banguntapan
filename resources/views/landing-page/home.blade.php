@@ -190,7 +190,7 @@
             </div>
 
             <div class="text-center mt-4" data-aos="zoom-out" data-aos-delay="100">
-                <a href="{{ route('advertisements.detail', $advertisement->id) }}" class="read-more stretched-link"
+                <a href="{{ route('advertisements') }}" class="read-more stretched-link"
                     style="font-size: 1.5rem;"> <!-- Besar tulisan -->
                     Lihat Semua Iklan
                 </a>
