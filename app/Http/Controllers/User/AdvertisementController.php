@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Advertisement;
 use App\Http\Controllers\Controller;
 use App\Models\AdvertisementProduct;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -26,7 +27,7 @@ class AdvertisementController extends Controller
         $advertisements = Advertisement::with(['business', 'products'])
             ->where('business_id', $businessId)
             ->get();
-            
+
         return view('user.advertisements.index', compact('advertisements', 'now'));
     }
 
@@ -45,7 +46,8 @@ class AdvertisementController extends Controller
         return view('user.advertisements.create', compact('products'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         // Mengambil user yang sedang login
         $authUserId = auth('user')->user()->id;
 
@@ -54,49 +56,57 @@ class AdvertisementController extends Controller
 
         $advertisementId = $this->generateUniqueAdvertisementId();
 
-        $validator = Validator::make($request->all(), 
-        // Aturan
+        // Validasi input
+        $validator = Validator::make($request->all(),
         [
-            'name' => 'required|string|min:3|',
+            'name' => 'required|string|min:3',
             'description' => 'nullable|string|min:3',
             'product_id' => 'required|array',
             'product_id.*' => 'exists:products,id',
             'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             'ad_start' => 'required|date|after_or_equal:' . now()->format('Y-m-d'),
             'ad_end' => 'required|date|after:ad_start',
-        ], 
-        // Pesan
+        ],
         [
-            // Required
+            // Custom error messages
             'name.required' => 'Nama iklan harus diisi.',
             'product_id.required' => 'Produk harus dipilih.',
             'ad_start.required' => 'Tanggal mulai iklan harus diisi.',
             'ad_end.required' => 'Tanggal berakhir iklan harus diisi.',
-
-            // String
-            'description.string' => 'Deskripi iklan harus berupa teks.',
-
-            // Mimes
+            'description.string' => 'Deskripsi iklan harus berupa teks.',
             'image.mimes' => 'Gambar harus berupa file dengan format: jpg, jpeg, png.',
-
-            // Max
             'image.max' => 'Ukuran file gambar tidak boleh lebih dari 2MB.',
-
-            // Min
             'name.min' => 'Nama iklan harus memiliki setidaknya :min karakter.',
             'description.min' => 'Deskripsi iklan harus memiliki setidaknya :min karakter.',
-
-            // Date
             'ad_start.date' => 'Tanggal mulai iklan harus berupa tanggal yang valid.',
             'ad_start.after_or_equal' => 'Tanggal mulai iklan tidak boleh sebelum hari ini.',
             'ad_end.date' => 'Tanggal berakhir iklan harus berupa tanggal yang valid.',
             'ad_end.after' => 'Tanggal berakhir iklan harus setelah tanggal mulai iklan.',
         ]);
 
-        if($validator->fails()){
-            // redirect dengan pesan error
-            toast('Periksa kembali data anda.','error')->timerProgressBar()->autoClose(5000);
+        if ($validator->fails()) {
+            toast('Periksa kembali data anda.', 'error')->timerProgressBar()->autoClose(5000);
             return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // Mengecek batasan 3 iklan per bulan
+        $adsThisMonth = Advertisement::where('business_id', $businessId)
+            ->whereYear('ad_start', now()->year)
+            ->whereMonth('ad_start', now()->month)
+            ->count();
+
+        if ($adsThisMonth >= 3) {
+            toast('Anda sudah mencapai batas maksimal 3 iklan per bulan.', 'error')->timerProgressBar()->autoClose(5000);
+            return redirect()->back();
+        }
+
+        // Validasi bahwa tanggal berakhir iklan tidak lebih dari 1 bulan
+        $adStart = Carbon::parse($request->ad_start);
+        $adEnd = Carbon::parse($request->ad_end);
+
+        if ($adEnd->greaterThan($adStart->addMonth())) {
+            toast('Tanggal berakhir iklan tidak boleh lebih dari 1 bulan dari tanggal mulai.', 'error')->timerProgressBar()->autoClose(5000);
+            return redirect()->back();
         }
 
         // Proses upload image
@@ -109,7 +119,7 @@ class AdvertisementController extends Controller
             $image = NULL;
         }
 
-        // Simpan data iklan hanya sekali dengan informasi produk yang terkait
+        // Simpan data iklan
         $advertisement = Advertisement::create([
             'id' => $advertisementId,
             'name' => $request->name,
