@@ -12,9 +12,11 @@
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <h1 data-aos="fade-up">Selamat datang di <span>{{ env('APP_NAME') }}</span></h1>
                 <p data-aos="fade-up" data-aos-delay="100">Mari bergabung bersama kami<br></p>
-                <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                    <a href="{{ route('user.showRegister') }}" class="btn-get-started">Registrasi</a>
-                </div>
+                @if (!auth('user')->check() && !auth('admin')->check())
+                    <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+                        <a href="{{ route('user.showRegister') }}" class="btn-get-started">Registrasi</a>
+                    </div>
+                @endif
                 <img src="{{ asset('QuickStart/assets/img/hero-services-img.webp') }}" class="img-fluid hero-img"
                     alt="" data-aos="zoom-out" data-aos-delay="300">
             </div>
@@ -190,8 +192,8 @@
             </div>
 
             <div class="text-center mt-4" data-aos="zoom-out" data-aos-delay="100">
-                <a href="{{ route('advertisements') }}" class="read-more stretched-link"
-                    style="font-size: 1.5rem;"> <!-- Besar tulisan -->
+                <a href="{{ route('advertisements') }}" class="read-more stretched-link" style="font-size: 1.5rem;">
+                    <!-- Besar tulisan -->
                     Lihat Semua Iklan
                 </a>
             </div>
