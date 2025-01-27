@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreign('business_id')->references('id')->on('businesses')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('product_type_id')->constrained('product_types')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('image')->nullable();
+            $table->integer('views')->default(0);
+            $table->integer('clicks')->default(0);
             $table->timestamps();
         });
     }

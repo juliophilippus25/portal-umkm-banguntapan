@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('business_id', 8);
             $table->foreign('business_id')->references('id')->on('businesses')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('image')->nullable();
+            $table->integer('views')->default(0);
+            $table->integer('clicks')->default(0);
             $table->timestamps();
         });
     }

@@ -22,6 +22,8 @@ class Advertisement extends Model
         'ad_end',
         'business_id',
         'image',
+        'views',
+        'clicks',
     ];
 
     public function business()

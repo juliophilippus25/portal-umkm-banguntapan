@@ -21,6 +21,8 @@ class Product extends Model
         'business_id',
         'product_type_id',
         'image',
+        'views',
+        'clicks',
     ];
 
     public function business()

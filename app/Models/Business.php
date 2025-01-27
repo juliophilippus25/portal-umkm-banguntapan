@@ -26,6 +26,7 @@ class Business extends Model
         'address',
         'zip_code',
         'avatar',
+        'gmap_link',
     ];
 
     public function user()

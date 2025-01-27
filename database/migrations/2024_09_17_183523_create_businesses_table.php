@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('no_pirt')->nullable();
             $table->string('address')->nullable();
             $table->string('zip_code')->nullable();
-            // $table->string('net_worth');
+            $table->string('gmap_link')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
         });
