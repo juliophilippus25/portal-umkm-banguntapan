@@ -25,11 +25,11 @@ class LandingPageController extends Controller
 
     public function detailBusiness($id) {
         $business = Business::with([
-            'user', 
-            'businessType', 
-            'subDistrict', 
-            'products', 
-            'products.advertisements', 
+            'user',
+            'businessType',
+            'subDistrict',
+            'products',
+            'products.advertisements',
             'advertisements',
             'advertisements.advertisementProducts'
             ])->findOrFail($id);
@@ -51,7 +51,17 @@ class LandingPageController extends Controller
 
     public function detailAdvertisement($id) {
         $advertisement = Advertisement::with(['business', 'advertisementProducts'])->find($id);
+        $advertisement->increment('views');
         return view('landing-page.advertisements.detailAds', compact('advertisement'));
+    }
+
+    public function clickAdvertisement($id) {
+        $advertisement = Advertisement::findOrFail($id);
+
+        // Tambah jumlah clicks
+        $advertisement->increment('clicks');
+
+        return redirect()->route('advertisements.detail', ['id' => $advertisement->id]);
     }
 
     public function products(Request $request) {
@@ -61,13 +71,13 @@ class LandingPageController extends Controller
         if ($request->filled('product_type')) {
             $query->where('product_type_id', $request->product_type);
         }
-    
+
         // Filter berdasarkan pencarian
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where('name', 'like', "%{$search}%");
         }
-    
+
         $products = $query->paginate(9); // Ambil produk dengan pagination
         $productTypes = ProductType::all(); // Ambil semua tipe produk
 
@@ -76,6 +86,16 @@ class LandingPageController extends Controller
 
     public function detailProduct($id) {
         $product = Product::with(['business', 'productType'])->orderBy('created_at', 'desc')->find($id);
+        $product->increment('views');
         return view('landing-page.products.detailPrds', compact('product'));
+    }
+
+    public function clickProduct($id) {
+        $product = Product::findOrFail($id);
+
+        // Tambah jumlah clicks
+        $product->increment('clicks');
+
+        return redirect()->route('products.detail', ['id' => $product->id]);
     }
 }

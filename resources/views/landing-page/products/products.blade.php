@@ -81,7 +81,7 @@
                                     {{ $product->description ? $product->description : 'Tidak ada deskripsi iklan.' }}
                                 </p>
                                 <p class="text-muted">{{ formatIDR($product->price) }}</p>
-                                <a href="{{ route('products.detail', $product->id) }}" class="btn btn-custom col-12">Lihat
+                                <a href="{{ route('product.click', $product->id) }}" class="btn btn-custom col-12">Lihat
                                     Selengkapnya</a>
                             </div>
                         </div><!-- End Card with an image on top -->

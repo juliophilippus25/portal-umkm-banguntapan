@@ -113,9 +113,8 @@
                                 <h3>{{ $product->name }} dari {{ $product->business->business_name }}</h3>
                                 <p>{{ $product->description }}</p>
                                 <p>{{ formatIDR($product->price) }}</p>
-                                <a href="{{ route('products.detail', $product->id) }}"
-                                    class="read-more stretched-link">Lihat Selengkapnya <i
-                                        class="bi bi-arrow-right"></i></a>
+                                <a href="{{ route('product.click', $product->id) }}" class="read-more stretched-link">Lihat
+                                    Selengkapnya <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div><!-- End Service Item -->
@@ -180,7 +179,7 @@
                                 {{ Carbon\Carbon::parse($advertisement->ad_start)->isoFormat('D MMMM Y') }}
                                 -
                                 {{ Carbon\Carbon::parse($advertisement->ad_end)->isoFormat('D MMMM Y') }}</p>
-                            <a href="{{ route('advertisements.detail', $advertisement->id) }}"
+                            <a href="{{ route('advertisement.click', $advertisement->id) }}"
                                 class="read-more stretched-link">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Testimonial Item -->

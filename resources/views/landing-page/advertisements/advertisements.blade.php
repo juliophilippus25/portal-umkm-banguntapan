@@ -56,7 +56,7 @@
                                     {{ Carbon\Carbon::parse($advertisement->ad_start)->isoFormat('D MMMM Y') }}
                                     -
                                     {{ Carbon\Carbon::parse($advertisement->ad_end)->isoFormat('D MMMM Y') }}</p>
-                                <a href="{{ route('advertisements.detail', $advertisement->id) }}"
+                                <a href="{{ route('advertisement.click', $advertisement->id) }}"
                                     class="btn btn-custom col-12">Lihat Selengkapnya</a>
                             </div>
                         </div><!-- End Card with an image on top -->

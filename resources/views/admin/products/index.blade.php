@@ -108,6 +108,16 @@
                                             <td>:</td>
                                             <td>{{ $product->productType->name }}</td>
                                         </tr>
+                                        <tr>
+                                            <td class="fw-bold">Jumlah Pengunjung</td>
+                                            <td>:</td>
+                                            <td>{{ $product->views }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">Jumlah Klik</td>
+                                            <td>:</td>
+                                            <td>{{ $product->clicks }}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

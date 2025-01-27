@@ -130,6 +130,16 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td class="fw-bold">Jumlah Pengunjung</td>
+                                            <td>:</td>
+                                            <td>{{ $advertisement->views }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">Jumlah Klik</td>
+                                            <td>:</td>
+                                            <td>{{ $advertisement->clicks }}</td>
+                                        </tr>
+                                        <tr>
                                             <td class="fw-bold">Status</td>
                                             <td>:</td>
                                             <td>

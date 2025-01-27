@@ -7,9 +7,10 @@ Route::get('/umkm', [App\Http\Controllers\LandingPageController::class, 'busines
 Route::get('/umkm/{id}', [App\Http\Controllers\LandingPageController::class, 'detailBusiness'])->name('businesses.detail');
 Route::get('/iklan', [App\Http\Controllers\LandingPageController::class, 'advertisements'])->name('advertisements');
 Route::get('/iklan/{id}', [App\Http\Controllers\LandingPageController::class, 'detailAdvertisement'])->name('advertisements.detail');
+Route::get('/iklan/{id}/klik', [App\Http\Controllers\LandingPageController::class, 'clickAdvertisement'])->name('advertisement.click');
 Route::get('/produk', [App\Http\Controllers\LandingPageController::class, 'products'])->name('products');
 Route::get('/produk/{id}', [App\Http\Controllers\LandingPageController::class, 'detailProduct'])->name('products.detail');
-
+Route::get('/produk/{id}/klik', [App\Http\Controllers\LandingPageController::class, 'clickProduct'])->name('product.click');
 
 
 // Route login dan register
@@ -40,7 +41,7 @@ Route::middleware('adminRedirectIfNotAuthenticated')->prefix('/admin')->group(fu
     // UMKM
     Route::get('/business', [App\Http\Controllers\Admin\BusinessController::class, 'index'])->name('admin.business');
     Route::get('/business/{id}', [App\Http\Controllers\Admin\BusinessController::class, 'show'])->name('admin.business.show');
-    
+
     // Produk
     Route::get('/products', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('admin.products');
 

@@ -40,7 +40,9 @@
                                 <h3 class="card-title">{{ $advertisement->name }} -
                                     {{ $advertisement->business->business_name }}</h3>
                                 <small class="text-muted">Diposting
-                                    {{ Carbon\Carbon::parse($advertisement->created_at)->isoFormat('D MMMM Y') }}</small>
+                                    {{ Carbon\Carbon::parse($advertisement->created_at)->isoFormat('D MMMM Y') }},</small>
+                                <small class="text-muted">{{ $advertisement->views }} pengunjung,</small>
+                                <small class="text-muted">{{ $advertisement->clicks }} klik</small>
                                 <p class="card-text">
                                     {{ $advertisement->description ? $advertisement->description : 'Tidak ada deskripsi iklan' }}
                                 </p>

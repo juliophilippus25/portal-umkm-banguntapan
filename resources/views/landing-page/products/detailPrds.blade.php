@@ -51,7 +51,9 @@
                                 </span>
                                 <h3 class="card-title">{{ $product->name }} - {{ $product->business->business_name }}</h3>
                                 <small class="text-muted">Diposting
-                                    {{ Carbon\Carbon::parse($product->created_at)->isoFormat('D MMMM Y') }}</small>
+                                    {{ Carbon\Carbon::parse($product->created_at)->isoFormat('D MMMM Y') }},</small>
+                                <small class="text-muted">{{ $product->views }} pengunjung,</small>
+                                <small class="text-muted">{{ $product->clicks }} klik</small>
                                 <p class="card-text">
                                     {{ $product->description ? $product->description : 'Tidak ada deskripsi produk' }}
                                 </p>
