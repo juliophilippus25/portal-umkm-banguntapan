@@ -139,6 +139,13 @@
                                     </div>
 
                                     <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Google Map</div>
+                                        <div class="col-lg-9 col-md-8">
+                                            <a href="{{ $business->gmap_link }}" target="_blank">Lihat di Google Map</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Kode Pos</div>
                                         <div class="col-lg-9 col-md-8">
                                             {{ $business->zip_code }}

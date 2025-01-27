@@ -34,7 +34,7 @@ class BusinessController extends Controller
                 ->where('user_id', $userId)
                 ->firstOrFail();
 
-        $validator = Validator::make($request->all(), 
+        $validator = Validator::make($request->all(),
         // Aturan
         [
             // Data UMKM
@@ -46,6 +46,7 @@ class BusinessController extends Controller
             'website' => 'nullable|url',
             'no_pirt' => 'nullable',
             'address' => 'required|string',
+            'gmap_link' => 'url',
             'zip_code' => 'required|digits:5',
             'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',
         ],
@@ -60,7 +61,7 @@ class BusinessController extends Controller
             'address.required' => 'Alamat harus diisi.',
             'zip_code.required' => 'Kode pos harus diisi.',
 
-            
+
             // Unique
             'business_name.unique' => 'Nama usaha sudah terdaftar.',
             'business_phone.unique' => 'Nomor HP usaha sudah terdaftar.',
@@ -84,7 +85,8 @@ class BusinessController extends Controller
 
             // URL
             'website.url' => 'URL/Link tidak valid. Contoh: http://example.com',
-            
+            'gmap_link.url' => 'URL/Link tidak valid. Contoh: https://maps.app.goo.gl/xxx',
+
             // Mimes
             'image.mimes' => 'Foto profil harus berupa file JPG, JPEG, atau PNG.',
             'image.max' => 'Ukuran foto profil maksimal 2MB.'
@@ -102,6 +104,7 @@ class BusinessController extends Controller
         $business->business_type_id = $request->input('business_type_id');
         $business->sub_district_id = $request->input('sub_district_id');
         $business->address = $request->input('address');
+        $business->gmap_link = $request->input('gmap_link');
         $business->zip_code = $request->input('zip_code');
         $business->business_phone = $request->input('business_phone');
         $business->no_pirt = $request->input('no_pirt');

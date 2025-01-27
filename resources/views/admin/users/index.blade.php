@@ -148,6 +148,14 @@
                                         <td>{{ $user->business->address }}</td>
                                     </tr>
                                     <tr>
+                                        <td class="fw-bold">Google Map</td>
+                                        <td>:</td>
+                                        <td>
+                                            <a href="{{ $user->business->gmap_link }}" target="_blank">Lihat di Google
+                                                Map</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td class="fw-bold">Kode Pos</td>
                                         <td>:</td>
                                         <td>{{ $user->business->zip_code }}</td>

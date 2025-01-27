@@ -40,6 +40,7 @@ class RegisterController extends Controller
             'business_type_id' => 'required',
             'sub_district_id' => 'required',
             'business_phone' => 'required|digits_between:10,15',
+            'gmap_link' => 'url',
             'website' => 'nullable|url',
             'no_pirt' => 'nullable',
             'address' => 'required|string',
@@ -72,7 +73,7 @@ class RegisterController extends Controller
             'business_name.string' => 'Nama usaha harus berupa teks.',
             'business_description.string' => 'Deskripi usaha harus berupa teks.',
             'address.string' => 'Alamat harus berupa teks.',
-            
+
             // Min
             'name.min' => 'Nama lengkap harus memiliki setidaknya :min karakter.',
             'business_name.min' => 'Nama usaha harus memiliki setidaknya :min karakter.',
@@ -87,7 +88,8 @@ class RegisterController extends Controller
             'zip_code.digits' => 'Kode pos harus tepat :digits karakter.',
 
             // URL
-            'website.url' => 'URL/Link tidak valid. Contoh: http://example.com'
+            'website.url' => 'URL/Link tidak valid. Contoh: http://example.com',
+            'gmap_link.url' => 'URL/Link tidak valid. Contoh: https://maps.app.goo.gl/xxx'
         ]);
 
         if($validator->fails()){
@@ -116,6 +118,7 @@ class RegisterController extends Controller
             'no_pirt' => $request->no_pirt,
             'address' => $request->address,
             'zip_code' => $request->zip_code,
+            'gmap_link' => $request->gmap_link
         ]);
 
         $details = [
@@ -125,7 +128,7 @@ class RegisterController extends Controller
         ];
 
         Mail::to('admin@umkmbanguntapan.com')->send(new VerificationEmail($details));
-        
+
         toast('Berhasil mendaftar. Silakan menunggu verifikasi melalui email anda.','success')->hideCloseButton()->autoClose(5000);
         return redirect()->route('user.showRegister');
     }

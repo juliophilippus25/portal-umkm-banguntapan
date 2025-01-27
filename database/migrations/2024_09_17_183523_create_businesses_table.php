@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->string('no_pirt')->nullable();
             $table->string('address')->nullable();
+            $table->string('gmap_link');
             $table->string('zip_code')->nullable();
-            $table->string('gmap_link')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

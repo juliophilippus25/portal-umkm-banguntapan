@@ -146,6 +146,22 @@
                                     </div>
 
                                     <div class="row mb-3">
+                                        <label for="gmap_link" class="col-md-4 col-lg-3 col-form-label">Google Map</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="gmap_link" type="url"
+                                                class="form-control @error('gmap_link') is-invalid @enderror @if (old('gmap_link') && !$errors->has('gmap_link')) is-valid @endif"
+                                                id="gmap_link" value="{{ old('gmap_link', $business->gmap_link) }}"
+                                                placeholder="Contoh: https://maps.app.goo.gl/xxx">
+                                            <small><a href="{{ old('gmap_link', $business->gmap_link) }}"
+                                                    target="_blank">Lihat
+                                                    di Google Map</a></small>
+                                            @error('gmap_link')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
                                         <label for="zip_code" class="col-md-4 col-lg-3 col-form-label">Kode Pos</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="zip_code" type="text"

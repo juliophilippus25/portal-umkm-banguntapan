@@ -140,6 +140,17 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 mb-3">
+                                            <label for="gmap_link" class="form-label">Google Map <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="url" name="gmap_link"
+                                                class="form-control @error('gmap_link') is-invalid @enderror"
+                                                id="gmap_link" placeholder="Contoh: https://maps.app.goo.gl/xxx"
+                                                value="{{ old('gmap_link') }}" required>
+                                            @error('gmap_link')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 mb-3">
                                             <label for="zip_code" class="form-label">Kode Pos <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" inputmode="numeric" name="zip_code"
